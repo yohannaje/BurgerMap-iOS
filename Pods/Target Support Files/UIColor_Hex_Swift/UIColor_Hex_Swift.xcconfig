@@ -1,0 +1,1 @@
+UICOLOR_HEX_SWIFT_OTHER_LDFLAGS = -framework "UIKit"

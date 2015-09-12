@@ -1,0 +1,421 @@
+{
+    "type": "FeatureCollection",
+    "features": [
+                 {
+                 "type": "Feature",
+                 "geometry": {
+                 "type": "Point",
+                 "coordinates":  [ -58.428549,-34.58762 ]
+                 },
+                 "properties": {
+                 "id":1,
+                 "hamburgueseria":"Burger Joint",
+                 "direccion":"Jorge Luis Borges 1776",
+                 "barrio":"Palermo",
+                 "telefono":"011 4833-5151",
+                 "mail1":"",
+                 "web":""
+                 }
+                 },
+                 {
+                 "type": "Feature",
+                 "geometry": {
+                 "type": "Point",
+                 "coordinates":  [ -58.4306567,-34.5723558 ]
+                 },
+                 "properties": {
+                 "id":2,
+                 "hamburgueseria":"Heisenburger Burger Lab",
+                 "direccion":"baez 252",
+                 "barrio":"Las CaÃ±itas",
+                 "telefono":"",
+                 "mail1":"",
+                 "web":""
+                 }
+                 },
+                 {
+                 "type": "Feature",
+                 "geometry": {
+                 "type": "Point",
+                 "coordinates":  [ -58.372381,-34.5996109 ]
+                 },
+                 "properties": {
+                 "id":3,
+                 "hamburgueseria":"Burger Mood",
+                 "direccion":"Viamonte 359",
+                 "barrio":"Microcentro",
+                 "telefono":"",
+                 "mail1":"",
+                 "web":""
+                 }
+                 },
+                 {
+                 "type": "Feature",
+                 "geometry": {
+                 "type": "Point",
+                 "coordinates":  [ -58.4031378,-34.5928587 ]
+                 },
+                 "properties": {
+                 "id":4,
+                 "hamburgueseria":"Mi Barrio",
+                 "direccion":"Arenales 2609",
+                 "barrio":"Barrio Norte",
+                 "telefono":"",
+                 "mail1":"",
+                 "web":""
+                 }
+                 },
+                 {
+                 "type": "Feature",
+                 "geometry": {
+                 "type": "Point",
+                 "coordinates":  [ -58.4354634,-34.5847858 ]
+                 },
+                 "properties": {
+                 "id":5,
+                 "hamburgueseria":"Perez H",
+                 "direccion":"Honduras 5509",
+                 "barrio":"Palermo",
+                 "telefono":"",
+                 "mail1":"",
+                 "web":""
+                 }
+                 },
+                 {
+                 "type": "Feature",
+                 "geometry": {
+                 "type": "Point",
+                 "coordinates":  [ -58.3767961,-34.6009562 ]
+                 },
+                 "properties": {
+                 "id":6,
+                 "hamburgueseria":"Perez H",
+                 "direccion":"MaipÃº 618",
+                 "barrio":"microcentro",
+                 "telefono":"",
+                 "mail1":"",
+                 "web":""
+                 }
+                 },
+                 {
+                 "type": "Feature",
+                 "geometry": {
+                 "type": "Point",
+                 "coordinates":  [ -58.3719503,-34.6128939 ]
+                 },
+                 "properties": {
+                 "id":7,
+                 "hamburgueseria":"Perez H",
+                 "direccion":"Defensa 435",
+                 "barrio":"San Telmo",
+                 "telefono":"",
+                 "mail1":"",
+                 "web":""
+                 }
+                 },
+                 {
+                 "type": "Feature",
+                 "geometry": {
+                 "type": "Point",
+                 "coordinates":  [ -58.3774293,-34.615924 ]
+                 },
+                 "properties": {
+                 "id":8,
+                 "hamburgueseria":"Chochan",
+                 "direccion":"Piedras 672",
+                 "barrio":"San Telmo",
+                 "telefono":"",
+                 "mail1":"",
+                 "web":""
+                 }
+                 },
+                 {
+                 "type": "Feature",
+                 "geometry": {
+                 "type": "Point",
+                 "coordinates":  [ -58.3909723,-34.6010687 ]
+                 },
+                 "properties": {
+                 "id":9,
+                 "hamburgueseria":"Dellepiane Bar",
+                 "direccion":"Luis Dellepiane 685",
+                 "barrio":"Microcentro",
+                 "telefono":"",
+                 "mail1":"",
+                 "web":""
+                 }
+                 },
+                 {
+                 "type": "Feature",
+                 "geometry": {
+                 "type": "Point",
+                 "coordinates":  [ -58.3907603,-34.6148184 ]
+                 },
+                 "properties": {
+                 "id":10,
+                 "hamburgueseria":"El Banco Rojo",
+                 "direccion":"BolÃ­var 914",
+                 "barrio":"San Telmo",
+                 "telefono":"",
+                 "mail1":"",
+                 "web":""
+                 }
+                 },
+                 {
+                 "type": "Feature",
+                 "geometry": {
+                 "type": "Point",
+                 "coordinates":  [ -58.3805294,-34.6125659 ]
+                 },
+                 "properties": {
+                 "id":11,
+                 "hamburgueseria":"DelToro",
+                 "direccion":"Bernardo de Irigoyen 366",
+                 "barrio":"San Telmo",
+                 "telefono":"",
+                 "mail1":"",
+                 "web":""
+                 }
+                 },
+                 {
+                 "type": "Feature",
+                 "geometry": {
+                 "type": "Point",
+                 "coordinates":  [ -58.4309981,-34.5767614 ]
+                 },
+                 "properties": {
+                 "id":12,
+                 "hamburgueseria":"Marfa",
+                 "direccion":"Av Santa Fe 5199",
+                 "barrio":"Palermo",
+                 "telefono":"",
+                 "mail1":"",
+                 "web":""
+                 }
+                 },
+                 {
+                 "type": "Feature",
+                 "geometry": {
+                 "type": "Point",
+                 "coordinates":  [ -58.3797986,-34.5995484 ]
+                 },
+                 "properties": {
+                 "id":13,
+                 "hamburgueseria":"180 Burger Bar",
+                 "direccion":"Suipacha 749",
+                 "barrio":"Microcentro",
+                 "telefono":"",
+                 "mail1":"",
+                 "web":""
+                 }
+                 },
+                 {
+                 "type": "Feature",
+                 "geometry": {
+                 "type": "Point",
+                 "coordinates":  [ -58.4352006,-34.5787925 ]
+                 },
+                 "properties": {
+                 "id":14,
+                 "hamburgueseria":"UCO Restaurant",
+                 "direccion":"Soler 5862",
+                 "barrio":"Palermo",
+                 "telefono":"",
+                 "mail1":"",
+                 "web":""
+                 }
+                 },
+                 {
+                 "type": "Feature",
+                 "geometry": {
+                 "type": "Point",
+                 "coordinates":  [ -58.373096,-34.6179775 ]
+                 },
+                 "properties": {
+                 "id":15,
+                 "hamburgueseria":"La Cresta San Telmo",
+                 "direccion":"BolÃ­var 865",
+                 "barrio":"San Telmo",
+                 "telefono":"",
+                 "mail1":"",
+                 "web":""
+                 }
+                 },
+                 {
+                 "type": "Feature",
+                 "geometry": {
+                 "type": "Point",
+                 "coordinates":  [ -58.4177989,-34.6018302 ]
+                 },
+                 "properties": {
+                 "id":16,
+                 "hamburgueseria":"La Cresta Almagro",
+                 "direccion":"Bulnes 829",
+                 "barrio":"Almagro",
+                 "telefono":"",
+                 "mail1":"",
+                 "web":""
+                 }
+                 },
+                 {
+                 "type": "Feature",
+                 "geometry": {
+                 "type": "Point",
+                 "coordinates":  [ -58.4393631,-34.6145981 ]
+                 },
+                 "properties": {
+                 "id":17,
+                 "hamburgueseria":"Tierra de Nadie",
+                 "direccion":"Avenida Avellaneda 588",
+                 "barrio":"Caballito",
+                 "telefono":"",
+                 "mail1":"",
+                 "web":""
+                 }
+                 },
+                 {
+                 "type": "Feature",
+                 "geometry": {
+                 "type": "Point",
+                 "coordinates":  [ -58.382499,-34.590663 ]
+                 },
+                 "properties": {
+                 "id":18,
+                 "hamburgueseria":"Pony Line",
+                 "direccion":"Posadas, 1086",
+                 "barrio":"Recoleta",
+                 "telefono":"",
+                 "mail1":"",
+                 "web":""
+                 }
+                 },
+                 {
+                 "type": "Feature",
+                 "geometry": {
+                 "type": "Point",
+                 "coordinates":  [ -58.4271444,-34.5908445 ]
+                 },
+                 "properties": {
+                 "id":19,
+                 "hamburgueseria":"Dean & Dennys",
+                 "direccion":"Malabia 1591",
+                 "barrio":"Palermo",
+                 "telefono":"",
+                 "mail1":"",
+                 "web":""
+                 }
+                 },
+                 {
+                 "type": "Feature",
+                 "geometry": {
+                 "type": "Point",
+                 "coordinates":  [ -58.4878471,-34.4854303 ]
+                 },
+                 "properties": {
+                 "id":20,
+                 "hamburgueseria":"Burger 54",
+                 "direccion":"Avenida del Libertador General San MartÃ­n 13632",
+                 "barrio":"",
+                 "telefono":"",
+                 "mail1":"",
+                 "web":""
+                 }
+                 },
+                 {
+                 "type": "Feature",
+                 "geometry": {
+                 "type": "Point",
+                 "coordinates":  [ -58.3931069,-34.5939094 ]
+                 },
+                 "properties": {
+                 "id":21,
+                 "hamburgueseria":"Ilegal Burger",
+                 "direccion":"Av Callao 1290",
+                 "barrio":"Recoleta",
+                 "telefono":"",
+                 "mail1":"",
+                 "web":""
+                 }
+                 },
+                 {
+                 "type": "Feature",
+                 "geometry": {
+                 "type": "Point",
+                 "coordinates":  [ -58.3874765,-34.5857183 ]
+                 },
+                 "properties": {
+                 "id":22,
+                 "hamburgueseria":"Perica",
+                 "direccion":"Av. del Libertador 2004",
+                 "barrio":"Palermo",
+                 "telefono":"",
+                 "mail1":"",
+                 "web":""
+                 }
+                 },
+                 {
+                 "type": "Feature",
+                 "geometry": {
+                 "type": "Point",
+                 "coordinates":  [ -58.4384437,-34.58428 ]
+                 },
+                 "properties": {
+                 "id":23,
+                 "hamburgueseria":"Home Burger",
+                 "direccion":"Bonpland 1580",
+                 "barrio":"Palermo",
+                 "telefono":"",
+                 "mail1":"",
+                 "web":""
+                 }
+                 },
+                 {
+                 "type": "Feature",
+                 "geometry": {
+                 "type": "Point",
+                 "coordinates":  [ -58.3928732,-34.5890505 ]
+                 },
+                 "properties": {
+                 "id":24,
+                 "hamburgueseria":"Burger Club",
+                 "direccion":"Junin 1721",
+                 "barrio":"Recoleta",
+                 "telefono":"",
+                 "mail1":"",
+                 "web":""
+                 }
+                 },
+                 {
+                 "type": "Feature",
+                 "geometry": {
+                 "type": "Point",
+                 "coordinates":  [ -58.3968063,-34.5924336 ]
+                 },
+                 "properties": {
+                 "id":25,
+                 "hamburgueseria":"Be Frika",
+                 "direccion":"JunÃ­n 1350",
+                 "barrio":"Recoleta",
+                 "telefono":"",
+                 "mail1":"",
+                 "web":""
+                 }
+                 },
+                 {
+                 "type": "Feature",
+                 "geometry": {
+                 "type": "Point",
+                 "coordinates":  [ -58.4479349,-34.556668 ]
+                 },
+                 "properties": {
+                 "id":26,
+                 "hamburgueseria":"MAD",
+                 "direccion":"Av. del Libertador 6002",
+                 "barrio":"Belgrano",
+                 "telefono":"",
+                 "mail1":"",
+                 "web":""
+                 }
+                 }
+                 ]
+}

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>SchemeUserState</key>
+	<dict>
+		<key>Alamofire.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-BurgerMap.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>SWRevealViewController.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>UIColor_Hex_Swift.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>106F806B89AB3A26FB5D649EEB88C848</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>1D0BE3786658A2F81A5A02F025D0039E</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>5256D377993AC10F7C90417B078C4010</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>7D2CFA9E43A03A34E7C8FACBDFD2FFD7</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+	</dict>
+</dict>
+</plist>

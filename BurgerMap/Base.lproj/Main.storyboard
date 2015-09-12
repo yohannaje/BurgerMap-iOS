@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="RxZ-VV-qdL">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+    </dependencies>
+    <scenes>
+        <!--BurgerMap-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="BurgerMapViewController" customModule="BurgerMap" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="TlT-0k-Hzr">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                            </mapView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="TlT-0k-Hzr" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="2gx-kH-FA7"/>
+                            <constraint firstItem="TlT-0k-Hzr" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="XPc-8j-Lxh"/>
+                            <constraint firstItem="TlT-0k-Hzr" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="p8o-Qx-Oq5"/>
+                            <constraint firstItem="TlT-0k-Hzr" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" id="stx-gv-Xv8"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="BurgerMap" id="xr0-vn-PnR">
+                        <barButtonItem key="leftBarButtonItem" title="Menu" id="cW7-KC-pzi"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="mapView" destination="TlT-0k-Hzr" id="DMg-jf-log"/>
+                        <outlet property="menuBarButton" destination="cW7-KC-pzi" id="MFg-fJ-Wxf"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1280" y="389"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="HA4-bb-PzO">
+            <objects>
+                <navigationController id="YTE-Q5-2J2" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="b0V-TL-egZ">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="qrh-2G-kev"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="15P-62-Npx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="454" y="389"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="9ew-p1-wYM">
+            <objects>
+                <viewController id="iJa-WE-zpR" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Obt-NF-mB4"/>
+                        <viewControllerLayoutGuide type="bottom" id="Zfn-Rc-IPG"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Ode-lF-X8u">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Menu" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l6V-Cf-XPo">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="42"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.14509803921568626" green="0.14117647058823529" blue="0.14117647058823529" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="l6V-Cf-XPo" firstAttribute="width" secondItem="Ode-lF-X8u" secondAttribute="width" id="DmZ-sc-vZg"/>
+                            <constraint firstItem="l6V-Cf-XPo" firstAttribute="centerX" secondItem="Ode-lF-X8u" secondAttribute="centerX" id="EfZ-ey-l1p"/>
+                            <constraint firstItem="l6V-Cf-XPo" firstAttribute="height" secondItem="Ode-lF-X8u" secondAttribute="height" id="H4J-vB-WdK"/>
+                            <constraint firstItem="l6V-Cf-XPo" firstAttribute="centerY" secondItem="Ode-lF-X8u" secondAttribute="centerY" id="s5W-I2-15t"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zkU-7s-iUQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-406" y="1223"/>
+        </scene>
+        <!--Reveal View Controller-->
+        <scene sceneID="rOQ-iM-zC5">
+            <objects>
+                <viewController id="RxZ-VV-qdL" customClass="SWRevealViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="QEM-X7-KHC"/>
+                        <viewControllerLayoutGuide type="bottom" id="G0R-0V-3Uu"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="bE2-AD-L5F">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <segue destination="YTE-Q5-2J2" kind="custom" identifier="sw_front" customClass="SWRevealViewControllerSegueSetController" id="CWo-HM-o5U"/>
+                        <segue destination="iJa-WE-zpR" kind="custom" identifier="sw_rear" customClass="SWRevealViewControllerSegueSetController" id="Aen-A4-XI4"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eQT-mS-DlP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-406" y="389"/>
+        </scene>
+    </scenes>
+</document>
