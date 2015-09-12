@@ -66,6 +66,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		350BB2871BA47CF900A0D215 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				350BB2851BA3D1B200A0D215 /* UIColor_Colors.swift */,
+			);
+			name = Extensions;
+			sourceTree = "<group>";
+		};
+		350BB2881BA47D0500A0D215 /* Supporting */ = {
+			isa = PBXGroup;
+			children = (
+				356499641BA3B4EC00C69E93 /* LaunchScreen.storyboard */,
+				356499671BA3B4EC00C69E93 /* Info.plist */,
+				350BB2821BA3CCB300A0D215 /* Burgers.geojson */,
+				350BB2831BA3CD1F00A0D215 /* Burgers.json */,
+			);
+			name = Supporting;
+			sourceTree = "<group>";
+		};
 		3564994F1BA3B4EC00C69E93 = {
 			isa = PBXGroup;
 			children = (
@@ -92,12 +111,9 @@
 				3564995B1BA3B4EC00C69E93 /* AppDelegate.swift */,
 				3564995F1BA3B4EC00C69E93 /* Main.storyboard */,
 				356499621BA3B4EC00C69E93 /* Assets.xcassets */,
-				356499641BA3B4EC00C69E93 /* LaunchScreen.storyboard */,
-				356499671BA3B4EC00C69E93 /* Info.plist */,
+				350BB2881BA47D0500A0D215 /* Supporting */,
 				3564997E1BA3BA3000C69E93 /* View Controllers */,
-				350BB2821BA3CCB300A0D215 /* Burgers.geojson */,
-				350BB2831BA3CD1F00A0D215 /* Burgers.json */,
-				350BB2851BA3D1B200A0D215 /* UIColor_Colors.swift */,
+				350BB2871BA47CF900A0D215 /* Extensions */,
 			);
 			path = BurgerMap;
 			sourceTree = "<group>";
