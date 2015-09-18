@@ -11,6 +11,16 @@ import MapKit
 import CoreLocation
 import SWRevealViewController
 
+extension UIView {
+    var snapshot: UIImage {
+        UIGraphicsBeginImageContextWithOptions(bounds.size, opaque, 0.0);
+        layer.renderInContext(UIGraphicsGetCurrentContext()!);
+        let image = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
+        return image;
+    }
+}
+
 typealias JSONDictionary = [NSObject : AnyObject]
 
 class BurgerWrapper: NSObject {
@@ -155,6 +165,14 @@ extension BurgerMapViewController: MKMapViewDelegate {
         view.image = UIImage(named: "burger_stand")
         view.canShowCallout = true
         return view
+    }
+    
+    func mapView(mapView: MKMapView, didSelectAnnotationView view: MKAnnotationView) {
+        guard let wrapper = view.annotation as? BurgerWrapper else { return }
+        let identifier = "ShowBurgerDetailSegue"
+        let info = BurgerDetailInfo(backgroundImage: view.snapshot, burgerWrapper: wrapper)
+        performSegueWithIdentifier(identifier, sender: info)
+        mapView.deselectAnnotation(view.annotation, animated: false)
     }
 }
 
