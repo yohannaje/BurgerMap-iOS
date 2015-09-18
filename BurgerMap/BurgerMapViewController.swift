@@ -21,6 +21,11 @@ extension UIView {
     }
 }
 
+func checkString(s: String?, _ t: String) -> String {
+    guard let r = s where r.utf8.count > 0 else { return t }
+    return r
+}
+
 typealias JSONDictionary = [NSObject : AnyObject]
 
 class BurgerWrapper: NSObject {
@@ -35,7 +40,11 @@ class BurgerWrapper: NSObject {
         let lon = raw["lon"] as! CLLocationDegrees
         return CLLocationCoordinate2D(latitude: lat, longitude: lon)
     }
-    var phone: String { return raw["telefono"] as! String }
+    
+    var rating: Int { return 3 }
+    var address: String { return checkString(raw["direccion"] as? String, NSLocalizedString("No address", comment: "Joint no address found")) }
+    var phone: String { return checkString(raw["telefono"] as? String, NSLocalizedString("No phone", comment: "Joint no phone found")) }
+    var website: String? { return checkString(raw["web"] as? String, NSLocalizedString("No website", comment: "Joint no website found")) }
 }
 
 extension BurgerWrapper: MKAnnotation {
@@ -141,6 +150,15 @@ class BurgerMapViewController: UIViewController {
     override func viewDidAppear(animated: Bool) {
         mapView.addAnnotations(burgersList)
     }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "ShowBurgerDetailSegue" {
+            guard let
+                nav = segue.destinationViewController as? UINavigationController,
+                vc = nav.viewControllers.first! as? BurgerDetailViewController else { return }
+            vc.info = sender as? BurgerDetailInfo
+        }
+    }
 }
 
 extension BurgerMapViewController: MKMapViewDelegate {
@@ -170,7 +188,7 @@ extension BurgerMapViewController: MKMapViewDelegate {
     func mapView(mapView: MKMapView, didSelectAnnotationView view: MKAnnotationView) {
         guard let wrapper = view.annotation as? BurgerWrapper else { return }
         let identifier = "ShowBurgerDetailSegue"
-        let info = BurgerDetailInfo(backgroundImage: view.snapshot, burgerWrapper: wrapper)
+        let info = BurgerDetailInfo(headerImage: nil, burgerWrapper: wrapper)
         performSegueWithIdentifier(identifier, sender: info)
         mapView.deselectAnnotation(view.annotation, animated: false)
     }
