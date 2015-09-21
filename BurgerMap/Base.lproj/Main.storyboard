@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="RxZ-VV-qdL">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
@@ -66,33 +67,47 @@
             </objects>
             <point key="canvasLocation" x="454" y="389"/>
         </scene>
-        <!--View Controller-->
+        <!--Menu View Controller-->
         <scene sceneID="9ew-p1-wYM">
             <objects>
-                <viewController id="iJa-WE-zpR" sceneMemberID="viewController">
+                <viewController id="iJa-WE-zpR" customClass="MenuViewController" customModule="BurgerMap" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Obt-NF-mB4"/>
                         <viewControllerLayoutGuide type="bottom" id="Zfn-Rc-IPG"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Ode-lF-X8u">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="260" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Menu" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l6V-Cf-XPo">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="42"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6ks-hn-N5k">
+                                <rect key="frame" x="65" y="20" width="130" height="130"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="6ks-hn-N5k" secondAttribute="height" multiplier="1:1" id="gCY-HU-uDU"/>
+                                    <constraint firstAttribute="width" constant="130" id="sw8-vL-NaG"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ebg-Pe-9tV">
+                                <rect key="frame" x="65" y="158" width="130" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" red="0.14509803921568626" green="0.14117647058823529" blue="0.14117647058823529" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="l6V-Cf-XPo" firstAttribute="width" secondItem="Ode-lF-X8u" secondAttribute="width" id="DmZ-sc-vZg"/>
-                            <constraint firstItem="l6V-Cf-XPo" firstAttribute="centerX" secondItem="Ode-lF-X8u" secondAttribute="centerX" id="EfZ-ey-l1p"/>
-                            <constraint firstItem="l6V-Cf-XPo" firstAttribute="height" secondItem="Ode-lF-X8u" secondAttribute="height" id="H4J-vB-WdK"/>
-                            <constraint firstItem="l6V-Cf-XPo" firstAttribute="centerY" secondItem="Ode-lF-X8u" secondAttribute="centerY" id="s5W-I2-15t"/>
+                            <constraint firstItem="Ebg-Pe-9tV" firstAttribute="top" secondItem="6ks-hn-N5k" secondAttribute="bottom" constant="8" id="REl-Wf-Tcs"/>
+                            <constraint firstItem="Ebg-Pe-9tV" firstAttribute="centerX" secondItem="6ks-hn-N5k" secondAttribute="centerX" id="eN5-OA-Q3c"/>
+                            <constraint firstItem="6ks-hn-N5k" firstAttribute="centerX" secondItem="Ode-lF-X8u" secondAttribute="centerX" id="lPg-qw-ECK"/>
+                            <constraint firstItem="Ebg-Pe-9tV" firstAttribute="width" secondItem="6ks-hn-N5k" secondAttribute="width" id="nNV-e9-5ER"/>
+                            <constraint firstItem="6ks-hn-N5k" firstAttribute="top" secondItem="Obt-NF-mB4" secondAttribute="bottom" id="vVe-Nq-YMF"/>
                         </constraints>
                     </view>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="260" height="600"/>
+                    <connections>
+                        <outlet property="imageView" destination="6ks-hn-N5k" id="Kzo-cL-41D"/>
+                        <outlet property="nameLabel" destination="Ebg-Pe-9tV" id="fsQ-wZ-EHS"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zkU-7s-iUQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -111,6 +126,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <segue destination="YTE-Q5-2J2" kind="custom" identifier="sw_front" customClass="SWRevealViewControllerSegueSetController" id="CWo-HM-o5U"/>

@@ -149,6 +149,7 @@ class BurgerMapViewController: UIViewController {
     
     override func viewDidAppear(animated: Bool) {
         mapView.addAnnotations(burgersList)
+        mapView.showAnnotations(burgersList, animated: true)
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {

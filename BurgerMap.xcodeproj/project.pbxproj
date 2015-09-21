@@ -15,6 +15,7 @@
 		356499661BA3B4EC00C69E93 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 356499641BA3B4EC00C69E93 /* LaunchScreen.storyboard */; };
 		356499711BA3B4EC00C69E93 /* BurgerMapTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356499701BA3B4EC00C69E93 /* BurgerMapTests.swift */; };
 		3564997D1BA3BA2D00C69E93 /* BurgerMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3564997C1BA3BA2D00C69E93 /* BurgerMapViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		35BB80311BAFB31100D84034 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35BB80301BAFB31100D84034 /* MenuViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		35CABE011BA92C6D00667924 /* BurgerDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CABE001BA92C6D00667924 /* BurgerDetailViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		444694583074142577B6F455 /* Pods_BurgerMap.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CDA5D6E36CC9BEA578632C2 /* Pods_BurgerMap.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
@@ -44,6 +45,7 @@
 		356499701BA3B4EC00C69E93 /* BurgerMapTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BurgerMapTests.swift; sourceTree = "<group>"; };
 		356499721BA3B4EC00C69E93 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3564997C1BA3BA2D00C69E93 /* BurgerMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BurgerMapViewController.swift; sourceTree = "<group>"; };
+		35BB80301BAFB31100D84034 /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		35CABE001BA92C6D00667924 /* BurgerDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BurgerDetailViewController.swift; sourceTree = "<group>"; };
 		70FAD69BFE8EAEEB49C42DDA /* Pods-BurgerMap.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BurgerMap.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BurgerMap/Pods-BurgerMap.debug.xcconfig"; sourceTree = "<group>"; };
 		8CDA5D6E36CC9BEA578632C2 /* Pods_BurgerMap.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BurgerMap.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -134,6 +136,7 @@
 			children = (
 				3564997C1BA3BA2D00C69E93 /* BurgerMapViewController.swift */,
 				35CABE001BA92C6D00667924 /* BurgerDetailViewController.swift */,
+				35BB80301BAFB31100D84034 /* MenuViewController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -321,6 +324,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				35CABE011BA92C6D00667924 /* BurgerDetailViewController.swift in Sources */,
+				35BB80311BAFB31100D84034 /* MenuViewController.swift in Sources */,
 				350BB2861BA3D1B200A0D215 /* UIColor_Colors.swift in Sources */,
 				3564997D1BA3BA2D00C69E93 /* BurgerMapViewController.swift in Sources */,
 				3564995C1BA3B4EC00C69E93 /* AppDelegate.swift in Sources */,
