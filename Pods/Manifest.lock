@@ -1,9 +1,12 @@
 PODS:
   - Alamofire (2.0.0)
+  - Bolts/Tasks (1.2.2)
   - Crashlytics (3.3.1)
   - Fabric (1.5.1):
     - Fabric/Base (= 1.5.1)
   - Fabric/Base (1.5.1)
+  - Parse (1.8.5):
+    - Bolts/Tasks (>= 1.2.2)
   - SnapKit (0.14.0)
   - SWRevealViewController (2.3.0)
   - UIColor_Hex_Swift (1.1)
@@ -12,14 +15,17 @@ DEPENDENCIES:
   - Alamofire (~> 2.0)
   - Crashlytics
   - Fabric
+  - Parse
   - SnapKit
   - SWRevealViewController (~> 2.3.0)
   - UIColor_Hex_Swift (~> 1.1)
 
 SPEC CHECKSUMS:
   Alamofire: 2f13548b29d25a58ecd91c9225fb51493e2b782b
+  Bolts: 20a2bd788273360cb1e31530dc19b8544eef2544
   Crashlytics: 0e61bdda9def51f1e99720f804eebe94865442b2
   Fabric: 03c3b3fe77e11a2bc31421b989a9c7adaa4779a5
+  Parse: 17ad8e0677ed682f7f00503860fcda0f4eb74168
   SnapKit: f42352ef34953866da0de1e1009c2ff82588a95e
   SWRevealViewController: 6d3fd97f70112fd7cef9de14df4260eacce4c63a
   UIColor_Hex_Swift: 55486cf30c685fab8621f4ec8efcc7713df08a67
