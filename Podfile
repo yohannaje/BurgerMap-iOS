@@ -12,6 +12,7 @@ pod 'Fabric'
 pod 'UIColor_Hex_Swift', '~> 1.1'
 pod 'SnapKit'
 pod 'Parse'
+pod 'ParseFacebookUtilsV4'
 end
 
 target 'BurgerMapTests' do

@@ -1,12 +1,33 @@
 PODS:
   - Alamofire (2.0.0)
+  - Bolts (1.2.2):
+    - Bolts/AppLinks (= 1.2.2)
+    - Bolts/Tasks (= 1.2.2)
+  - Bolts/AppLinks (1.2.2):
+    - Bolts/Tasks
   - Bolts/Tasks (1.2.2)
   - Crashlytics (3.3.1)
   - Fabric (1.5.1):
     - Fabric/Base (= 1.5.1)
   - Fabric/Base (1.5.1)
+  - FBSDKCoreKit (4.6.0):
+    - Bolts (~> 1.1)
+    - FBSDKCoreKit/arc (= 4.6.0)
+    - FBSDKCoreKit/no-arc (= 4.6.0)
+  - FBSDKCoreKit/arc (4.6.0):
+    - Bolts (~> 1.1)
+  - FBSDKCoreKit/no-arc (4.6.0):
+    - Bolts (~> 1.1)
+    - FBSDKCoreKit/arc
+  - FBSDKLoginKit (4.6.0):
+    - FBSDKCoreKit
   - Parse (1.8.5):
     - Bolts/Tasks (>= 1.2.2)
+  - ParseFacebookUtilsV4 (1.8.5):
+    - Bolts/Tasks (>= 1.2.2)
+    - FBSDKCoreKit (~> 4.0)
+    - FBSDKLoginKit (~> 4.0)
+    - Parse (~> 1.8.4)
   - SnapKit (0.14.0)
   - SWRevealViewController (2.3.0)
   - UIColor_Hex_Swift (1.1)
@@ -16,6 +37,7 @@ DEPENDENCIES:
   - Crashlytics
   - Fabric
   - Parse
+  - ParseFacebookUtilsV4
   - SnapKit
   - SWRevealViewController (~> 2.3.0)
   - UIColor_Hex_Swift (~> 1.1)
@@ -25,7 +47,10 @@ SPEC CHECKSUMS:
   Bolts: 20a2bd788273360cb1e31530dc19b8544eef2544
   Crashlytics: 0e61bdda9def51f1e99720f804eebe94865442b2
   Fabric: 03c3b3fe77e11a2bc31421b989a9c7adaa4779a5
+  FBSDKCoreKit: 9954492d90c5fd65ae831395697a1660360d61f1
+  FBSDKLoginKit: 3d07febbfa884b9878cacba54f705bb41f07d4b6
   Parse: 17ad8e0677ed682f7f00503860fcda0f4eb74168
+  ParseFacebookUtilsV4: cc51857cf984c6fc743e7f17c2ddebdb6f02f963
   SnapKit: f42352ef34953866da0de1e1009c2ff82588a95e
   SWRevealViewController: 6d3fd97f70112fd7cef9de14df4260eacce4c63a
   UIColor_Hex_Swift: 55486cf30c685fab8621f4ec8efcc7713df08a67
