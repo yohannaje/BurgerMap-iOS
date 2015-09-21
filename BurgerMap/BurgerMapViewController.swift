@@ -159,6 +159,11 @@ class BurgerMapViewController: UIViewController {
             vc.info = sender as? BurgerDetailInfo
         }
     }
+    
+    @IBAction func unwindFromDetail(segue: UIStoryboardSegue!) {
+        
+    }
+
 }
 
 extension BurgerMapViewController: MKMapViewDelegate {

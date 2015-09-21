@@ -202,13 +202,20 @@
                             <constraint firstItem="9Df-5u-12j" firstAttribute="width" secondItem="apf-gs-fPE" secondAttribute="width" id="rbw-dd-8T3"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="ssJ-er-uj1"/>
+                    <navigationItem key="navigationItem" id="ssJ-er-uj1">
+                        <barButtonItem key="rightBarButtonItem" title="Item" id="EI6-dE-gOs">
+                            <connections>
+                                <segue destination="xue-5H-pQH" kind="unwind" unwindAction="unwindFromDetail:" id="OKP-QW-Vun"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="card" destination="i2S-d3-teV" id="tc4-Lj-V2s"/>
                         <outlet property="reviewsTable" destination="IOK-Wv-OvC" id="lqg-0B-LNL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Wx5-yD-oce" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="xue-5H-pQH" userLabel="Exit" sceneMemberID="exit"/>
                 <view clipsSubviews="YES" contentMode="scaleToFill" id="i2S-d3-teV" customClass="BurgerCard" customModule="BurgerMap" customModuleProvider="target">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="330"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>

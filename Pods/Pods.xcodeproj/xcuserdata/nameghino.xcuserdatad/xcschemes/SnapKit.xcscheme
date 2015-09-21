@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "D44CB1FC85F3A5500F143945"
-               BuildableName = "Pods_BurgerMap.framework"
-               BlueprintName = "Pods-BurgerMap"
+               BlueprintIdentifier = "021AA4A7354915489FB03A9B"
+               BuildableName = "SnapKit.framework"
+               BlueprintName = "SnapKit"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>

@@ -104,25 +104,18 @@ class BurgerCard: UIView {
     }
     
     private func setRating(joint: BurgerWrapper) {
-        let s = NSMutableAttributedString(string: "")
-        for i in 0..<5 {
-            let color: UIColor
-            let t: String
-            if i < joint.rating {
-                color = .yellowColor()
-                t = "\u{2605}"
-            } else {
-                color = .whiteColor()
-                t = "\u{2605}"
-            }
-            s.appendAttributedString(NSAttributedString(string: t, attributes: [NSForegroundColorAttributeName: color]))
+        let s = (0..<5)
+            .map { $0 < joint.rating ? UIColor.yellowColor() : UIColor.whiteColor() }
+            .map { NSAttributedString(string: "\u{2605}", attributes: [NSForegroundColorAttributeName : $0]) }
+            .reduce(NSMutableAttributedString()) {
+                $0.appendAttributedString($1)
+                return $0
         }
         starRatingLabel.attributedText = s
     }
 }
 
 class BurgerDetailViewController: UIViewController {
-    
     var reviewsHeader: UIView {
         let label = UILabel()
         label.text = "\(info?.reviews.count ?? 0) reviews"
@@ -161,6 +154,9 @@ class BurgerDetailViewController: UIViewController {
         super.viewDidLoad()
         reviewsTable.tableHeaderView = card
         reviewsTable.sectionHeaderHeight = 40
+        
+//        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Done, target: self, action: "doneButtonHandler:")
+        
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -175,6 +171,11 @@ class BurgerDetailViewController: UIViewController {
             self.reviewsTable.reloadData()
         }
     }
+    
+    func doneButtonHandler(sender: AnyObject?) {
+        NSLog("presenting vc is \(self.presentingViewController)")
+    }
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

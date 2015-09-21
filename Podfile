@@ -10,6 +10,8 @@ pod 'SWRevealViewController', '~> 2.3.0'
 pod 'Crashlytics'
 pod 'Fabric'
 pod 'UIColor_Hex_Swift', '~> 1.1'
+pod 'SnapKit'
+pod 'Parse'
 end
 
 target 'BurgerMapTests' do

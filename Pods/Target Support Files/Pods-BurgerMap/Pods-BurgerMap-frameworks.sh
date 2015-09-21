@@ -54,10 +54,12 @@ code_sign_if_enabled() {
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework 'Pods-BurgerMap/Alamofire.framework'
   install_framework 'Pods-BurgerMap/SWRevealViewController.framework'
+  install_framework 'Pods-BurgerMap/SnapKit.framework'
   install_framework 'Pods-BurgerMap/UIColor_Hex_Swift.framework'
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework 'Pods-BurgerMap/Alamofire.framework'
   install_framework 'Pods-BurgerMap/SWRevealViewController.framework'
+  install_framework 'Pods-BurgerMap/SnapKit.framework'
   install_framework 'Pods-BurgerMap/UIColor_Hex_Swift.framework'
 fi
