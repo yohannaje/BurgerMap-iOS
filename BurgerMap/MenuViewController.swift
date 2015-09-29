@@ -9,21 +9,81 @@
 import UIKit
 import ParseFacebookUtilsV4
 
+extension PFUser {
+    public typealias FetchProfileCallback = (name: String?, picture: UIImage?) -> ()
+    func fetchProfile(callback: FetchProfileCallback? = nil) {
+        NSLog("fetching profile data")
+        let request = FBSDKGraphRequest(graphPath: "me", parameters: nil)
+        request.startWithCompletionHandler {
+            (connection, result, error) -> Void in
+            guard let userData = result as? [NSObject : AnyObject] where error == nil else {
+                NSLog("could not fetch profile data: \(error.localizedDescription)")
+                return
+            }
+            
+            guard let id = userData["id"] as? String else { return }
+            NSLog("uid: \(id)")
+            
+            let pictureURL = {
+                return NSURL(string: "https://graph.facebook.com/\(id)/picture?type=large&return_ssl_resources=1")!
+                }()
+            
+            if let
+                name = userData["name"] as? String,
+                data = NSData(contentsOfURL: pictureURL),
+                image = UIImage(data: data) {
+                    Configuration.UserImage = image
+                    Configuration.UserName = name
+                    callback?(name: name, picture: image)
+            }
+        }
+    }
+}
+
 class Configuration {
-    enum Key: String {
-        case UserKey
+    private enum Key: String {
         case UserImageKey
+        case UserKey
+        case UserNameKey
     }
     
-    static var sharedInstance = Configuration()
-    private var store = [Key : AnyObject]()
-    subscript(key: Key) -> AnyObject? {
+    private var volatileStorage: [String : AnyObject] = [:]
+    
+    private static func fetchKey(key: String) -> AnyObject? {
+        return NSUserDefaults.standardUserDefaults().objectForKey(key)
+    }
+    
+    private static func setObject(object: AnyObject, forKey key: String) {
+        NSUserDefaults.standardUserDefaults().setObject(object, forKey: key)
+        NSUserDefaults.standardUserDefaults().synchronize()
+    }
+    
+    static var UserName: String? {
         get {
-            return store[key]
+        return fetchKey(Key.UserNameKey.rawValue) as? String
         }
         
         set {
-            store[key] = newValue
+            guard let name = newValue else { return }
+            setObject(name, forKey: Key.UserNameKey.rawValue)
+        }
+    }
+    
+    static var UserImage: UIImage? {
+        get {
+            guard let data = fetchKey(Key.UserImageKey.rawValue) as? NSData else { return nil }
+            return UIImage(data: data)
+        }
+        
+        set {
+            guard let
+                image = newValue,
+                data = UIImagePNGRepresentation(image)
+                else {
+                    NSLog("could not convert image to bytes :-(")
+                    return
+            }
+            setObject(data, forKey: Key.UserImageKey.rawValue)
         }
     }
 }
@@ -36,46 +96,28 @@ class MenuViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let debug = true
+        let debug = false
         
-        if let _ = PFUser.currentUser() where !debug {
-            // do nothing...
+        let afterFetchProfile: PFUser.FetchProfileCallback = {
+            [unowned self] name, image in
+            self.imageView.image = image
+            self.nameLabel.text = name
+        }
+        
+        afterFetchProfile(name: Configuration.UserName, picture: Configuration.UserImage)
+        
+        if let user = PFUser.currentUser() where !debug {
+            user.fetchProfile(afterFetchProfile)
         } else {
             let permissions = ["user_about_me", "user_relationships", "user_location"]
             PFFacebookUtils.logInInBackgroundWithReadPermissions(permissions) {
                 (user, error) -> Void in
-                if error != nil {
+                guard let user = user where error != nil else {
                     NSLog("could not log in")
                     return
                 }
-                Configuration.sharedInstance[.UserKey] = user
                 NSLog("got user: \(user)")
-                NSLog("fetching profile data")
-                
-                let request = FBSDKGraphRequest(graphPath: "me", parameters: nil)
-                request.startWithCompletionHandler {
-                    [unowned self](connection, result, error) -> Void in
-                    guard let userData = result as? [NSObject : AnyObject] where error == nil else {
-                        NSLog("could not fetch profile data: \(error.localizedDescription)")
-                        return
-                    }
-                    
-                    guard let id = userData["id"] as? String else { return }
-                    NSLog("uid: \(id)")
-                    
-                    let pictureURL = {
-                        return NSURL(string: "https://graph.facebook.com/\(id)/picture?type=large&return_ssl_resources=1")!
-                        }()
-                    
-                    if let
-                        name = userData["name"] as? String,
-                        data = NSData(contentsOfURL: pictureURL),
-                        image = UIImage(data: data) {
-                            Configuration.sharedInstance[.UserImageKey] = image
-                            self.imageView.image = image
-                            self.nameLabel.text = name
-                    }
-                }
+                user.fetchProfile(afterFetchProfile)
             }
         }
     }
