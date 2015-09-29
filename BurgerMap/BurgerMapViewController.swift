@@ -186,7 +186,7 @@ extension BurgerMapViewController: MKMapViewDelegate {
         } else {
             view = MKAnnotationView(annotation: annotation, reuseIdentifier: "BurgerPin")
         }
-        view.image = UIImage(named: "burger_stand")
+        view.image = UIImage(named: "burger_pin")
         view.canShowCallout = true
         return view
     }
