@@ -12,7 +12,7 @@ import UIColor_Hex_Swift
 extension UIColor {
     class func burgerOrange() -> UIColor {
         // #F5A623
-        return UIColor(rgba: "#F4A623")
+        return UIColor(rgba: "#F5A623")
     }
     
     class func burgerDarkGray() -> UIColor {
