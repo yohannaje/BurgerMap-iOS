@@ -1,1 +1,1 @@
-../../../ParseFacebookUtilsV4/PFFacebookUtils.h
+../../../ParseFacebookUtilsV4/ParseFacebookUtils/PFFacebookUtils.h
