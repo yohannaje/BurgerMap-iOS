@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "95EB1504C688DC617DC04C6B"
+               BlueprintIdentifier = "F613FE99E15689251D1CA7F2"
                BuildableName = "Pods_BurgerMap.framework"
                BlueprintName = "Pods-BurgerMap"
                ReferencedContainer = "container:Pods.xcodeproj">
