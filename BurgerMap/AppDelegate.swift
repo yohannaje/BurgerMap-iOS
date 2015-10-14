@@ -19,6 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     private func applyStyle() {
         let tintColor = UIColor.whiteColor()
+        UINavigationBar.appearance().barStyle = UIBarStyle.Black
         UINavigationBar.appearance().translucent = true
         UINavigationBar.appearance().barTintColor = UIColor.burgerOrange()
         UINavigationBar.appearance().tintColor = tintColor
