@@ -17,7 +17,7 @@
 		3564997D1BA3BA2D00C69E93 /* BurgerMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3564997C1BA3BA2D00C69E93 /* BurgerMapViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		35BB80311BAFB31100D84034 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35BB80301BAFB31100D84034 /* MenuViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		35CABE011BA92C6D00667924 /* BurgerDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CABE001BA92C6D00667924 /* BurgerDetailViewController.swift */; settings = {ASSET_TAGS = (); }; };
-		444694583074142577B6F455 /* Pods_BurgerMap.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CDA5D6E36CC9BEA578632C2 /* Pods_BurgerMap.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		444694583074142577B6F455 /* Pods_BurgerMap.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CDA5D6E36CC9BEA578632C2 /* Pods_BurgerMap.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
