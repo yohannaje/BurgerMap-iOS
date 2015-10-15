@@ -79,12 +79,7 @@ class BurgerCard: UIView {
     }()
     
     
-    @IBOutlet weak var favoriteButton: UIButton! {
-        didSet {
-            favoriteButton.titleLabel?.font = UIFont.systemFontOfSize(30)
-            favoriteButton.setTitle("\u{2661}", forState: .Normal)
-        }
-    }
+    @IBOutlet weak var favoriteButton: UIButton!
     
     @IBOutlet weak var addressTitleLabel: UILabel! { didSet { addressTitleLabel.text = NSLocalizedString("Address", comment: "Joint address title") } }
     @IBOutlet weak var phoneTitleLabel: UILabel! { didSet { phoneTitleLabel.text = NSLocalizedString("Phone", comment: "Joint address title") } }

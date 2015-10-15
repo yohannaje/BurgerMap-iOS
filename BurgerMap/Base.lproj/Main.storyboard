@@ -33,7 +33,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="BurgerMap" id="xr0-vn-PnR">
-                        <barButtonItem key="leftBarButtonItem" title="Menu" id="cW7-KC-pzi"/>
+                        <barButtonItem key="leftBarButtonItem" image="menu" id="cW7-KC-pzi"/>
                     </navigationItem>
                     <connections>
                         <outlet property="mapView" destination="TlT-0k-Hzr" id="DMg-jf-log"/>
@@ -234,7 +234,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="ssJ-er-uj1">
-                        <barButtonItem key="rightBarButtonItem" title="Close" id="EI6-dE-gOs">
+                        <barButtonItem key="rightBarButtonItem" image="close" id="EI6-dE-gOs">
                             <connections>
                                 <segue destination="xue-5H-pQH" kind="unwind" unwindAction="unwindFromDetail:" id="OKP-QW-Vun"/>
                             </connections>
@@ -262,24 +262,24 @@
                             <rect key="frame" x="38" y="82" width="300" height="63"/>
                             <subviews>
                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="y55-7i-LUs">
-                                    <rect key="frame" x="0.0" y="0.0" width="254" height="63"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="256" height="63"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NX2-21-qQp">
-                                            <rect key="frame" x="0.0" y="0.0" width="254" height="21"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="256" height="20.5"/>
                                             <animations/>
                                             <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
                                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="1000" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mj1-TC-hMP">
-                                            <rect key="frame" x="0.0" y="21" width="254" height="21"/>
+                                            <rect key="frame" x="0.0" y="20.5" width="256" height="20.5"/>
                                             <animations/>
                                             <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
                                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <view contentMode="scaleToFill" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="eV0-Uj-fFP">
-                                            <rect key="frame" x="0.0" y="41" width="254" height="22"/>
+                                            <rect key="frame" x="0.0" y="41" width="256" height="22"/>
                                             <animations/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             <constraints>
@@ -289,10 +289,13 @@
                                     </subviews>
                                     <animations/>
                                 </stackView>
-                                <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="top" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2BU-bV-zvw">
-                                    <rect key="frame" x="254" y="0.0" width="46" height="63"/>
+                                <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2BU-bV-zvw">
+                                    <rect key="frame" x="256" y="0.0" width="44" height="63"/>
                                     <animations/>
-                                    <state key="normal" title="Button"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="44" id="gew-rf-kTw"/>
+                                    </constraints>
+                                    <state key="normal" image="fav"/>
                                 </button>
                             </subviews>
                             <animations/>
@@ -304,14 +307,14 @@
                                     <rect key="frame" x="0.0" y="0.0" width="300" height="43"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mQ6-5v-Uqr">
-                                            <rect key="frame" x="0.0" y="0.0" width="300" height="21"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="300" height="20.5"/>
                                             <animations/>
                                             <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
                                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SNM-95-Fjy">
-                                            <rect key="frame" x="0.0" y="23" width="300" height="21"/>
+                                            <rect key="frame" x="0.0" y="22.5" width="300" height="20.5"/>
                                             <animations/>
                                             <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
                                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -324,14 +327,14 @@
                                     <rect key="frame" x="0.0" y="49" width="300" height="43"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HYC-fy-jbF">
-                                            <rect key="frame" x="0.0" y="0.0" width="300" height="21"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="300" height="20.5"/>
                                             <animations/>
                                             <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
                                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MCC-Oa-TMV">
-                                            <rect key="frame" x="0.0" y="23" width="300" height="21"/>
+                                            <rect key="frame" x="0.0" y="22.5" width="300" height="20.5"/>
                                             <animations/>
                                             <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
                                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -344,14 +347,14 @@
                                     <rect key="frame" x="0.0" y="98" width="300" height="43"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8AL-1y-5eu">
-                                            <rect key="frame" x="0.0" y="0.0" width="300" height="21"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="300" height="20.5"/>
                                             <animations/>
                                             <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
                                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3jf-eP-rvA">
-                                            <rect key="frame" x="0.0" y="23" width="300" height="21"/>
+                                            <rect key="frame" x="0.0" y="22.5" width="300" height="20.5"/>
                                             <animations/>
                                             <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
                                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -397,5 +400,8 @@
     </scenes>
     <resources>
         <image name="burger_header" width="300" height="225"/>
+        <image name="close" width="24" height="25"/>
+        <image name="fav" width="20" height="20"/>
+        <image name="menu" width="25" height="21"/>
     </resources>
 </document>
