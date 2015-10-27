@@ -148,7 +148,6 @@ class MenuViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        revealViewController().
         menuTableView.tableHeaderView = menuHeaderView
         menuTableView.contentInset = UIEdgeInsets(top: 66, left: 0, bottom: 0, right: 0)        
         menuHeaderView.snp_makeConstraints { (make) -> Void in
