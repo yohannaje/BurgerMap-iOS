@@ -94,6 +94,10 @@ class MenuHeaderView: UIView {
     @IBOutlet weak var reviewsLabel: UILabel!
     @IBOutlet weak var checkinsLabel: UILabel!
     
+    override func awakeFromNib() {
+//        translatesAutoresizingMaskIntoConstraints = false
+    }
+    
     override func layoutSubviews() {
         super.layoutSubviews()
         imageView.layer.cornerRadius = imageView.bounds.width / 2.0
@@ -131,10 +135,8 @@ struct MenuShortcut {
 }
 
 class MenuViewController: UIViewController {
-    @IBOutlet weak var menuHeaderView: MenuHeaderView! {
-        didSet {
-            menuHeaderView.backgroundColor = .clearColor()
-        }
+    var menuHeaderView: MenuHeaderView! {
+        return menuTableView.tableHeaderView as! MenuHeaderView
     }
     @IBOutlet weak var menuTableView: UITableView!
     
@@ -149,11 +151,6 @@ class MenuViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         menuTableView.tableHeaderView = menuHeaderView
-        menuTableView.contentInset = UIEdgeInsets(top: 66, left: 0, bottom: 0, right: 0)        
-        menuHeaderView.snp_makeConstraints { (make) -> Void in
-            make.width.equalTo(menuTableView.snp_width)
-        }
-        menuTableView.setNeedsLayout()
     }
     
     override func viewWillAppear(animated: Bool) {

@@ -9,7 +9,6 @@
 import UIKit
 import MapKit
 import CoreLocation
-import SWRevealViewController
 
 extension UIView {
     var snapshot: UIImage {
@@ -124,6 +123,13 @@ class BurgerMapViewController: UIViewController {
     
     var firstLocate: Bool = true
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        navigationItem.leftBarButtonItem = {
+            return UIBarButtonItem(image: UIImage(named: "menu"), style: .Plain, target: ContainerViewController.sharedInstance, action: "toggleMenu:")
+        }()
+    }
+    
     override func viewWillAppear(animated: Bool) {
         LocationHelper.checkLocationAuthorization(.AuthorizedWhenInUse) {
             [unowned self] _ in
@@ -131,22 +137,8 @@ class BurgerMapViewController: UIViewController {
             self.locationManager.startUpdatingLocation()
             self.mapView.showsUserLocation = true
         }
+    }
         
-        if let revealVC = revealViewController() {
-            menuBarButton.target = revealVC
-            menuBarButton.action = "revealToggle:"
-            navigationController?.navigationBar.addGestureRecognizer(revealVC.panGestureRecognizer())
-        } else {
-            NSLog("No reveal VC found :-(")
-        }
-    }
-    
-    override func viewWillDisappear(animated: Bool) {
-        if let revealVC = revealViewController() {
-            navigationController?.navigationBar.removeGestureRecognizer(revealVC.panGestureRecognizer())
-        }
-    }
-    
     override func viewDidAppear(animated: Bool) {
         mapView.addAnnotations(burgersList)
         mapView.showAnnotations(burgersList, animated: true)
