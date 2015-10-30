@@ -39,7 +39,7 @@
                     <connections>
                         <outlet property="mapView" destination="TlT-0k-Hzr" id="DMg-jf-log"/>
                         <outlet property="menuBarButton" destination="cW7-KC-pzi" id="MFg-fJ-Wxf"/>
-                        <segue destination="oSc-ZI-2lm" kind="presentation" identifier="ShowBurgerDetailSegue" modalPresentationStyle="overCurrentContext" modalTransitionStyle="coverVertical" id="gPv-O0-hpB"/>
+                        <segue destination="t7i-KQ-bgQ" kind="show" identifier="ShowBurgerDetailSegue" id="kEk-kW-b1A"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -200,7 +200,7 @@
                             </tableView>
                         </subviews>
                         <animations/>
-                        <color key="backgroundColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="0.75" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.13333333333333333" green="0.13333333333333333" blue="0.13333333333333333" alpha="0.75" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="D1f-ca-s7A" firstAttribute="centerY" secondItem="LOg-DM-XXa" secondAttribute="centerY" id="WM7-lh-hJA"/>
                             <constraint firstItem="D1f-ca-s7A" firstAttribute="height" secondItem="LOg-DM-XXa" secondAttribute="height" id="bke-rW-uvJ"/>
@@ -217,25 +217,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="c8B-NE-wRM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="620" y="1113.5"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="xXV-ck-tIs">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="oSc-ZI-2lm" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="WMj-Xb-M56">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <animations/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="t7i-KQ-bgQ" kind="relationship" relationship="rootViewController" id="65h-RF-cKK"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="OSu-aY-HYg" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1819.5" y="388.5"/>
         </scene>
         <!--Burger Detail View Controller-->
         <scene sceneID="JI5-Ro-wmK">
@@ -469,7 +450,7 @@
                     </connections>
                 </view>
             </objects>
-            <point key="canvasLocation" x="2837.5" y="1194.5"/>
+            <point key="canvasLocation" x="1851.5" y="388.5"/>
         </scene>
     </scenes>
     <resources>

@@ -10,6 +10,8 @@ import UIKit
 import MapKit
 import CoreLocation
 
+let ShowDetailSegueIdentifier = "ShowBurgerDetailSegue"
+
 extension UIView {
     var snapshot: UIImage {
         UIGraphicsBeginImageContextWithOptions(bounds.size, opaque, 0.0);
@@ -149,8 +151,7 @@ class BurgerMapViewController: UIViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "ShowBurgerDetailSegue" {
             guard let
-                nav = segue.destinationViewController as? UINavigationController,
-                vc = nav.viewControllers.first! as? BurgerDetailViewController else { return }
+                vc = segue.destinationViewController as? BurgerDetailViewController else { return }
             vc.info = sender as? BurgerDetailInfo
         }
     }
