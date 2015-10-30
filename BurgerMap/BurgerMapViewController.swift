@@ -131,6 +131,8 @@ class BurgerMapViewController: UIViewController {
             return UIBarButtonItem(image: UIImage(named: "menu"), style: .Plain, target: ContainerViewController.sharedInstance, action: "toggleMenu:")
         }()
         
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: nil)
+        
         ContainerViewController.sharedInstance.closeMenu()
     }
     

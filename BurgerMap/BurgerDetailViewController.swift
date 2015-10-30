@@ -141,6 +141,7 @@ class BurgerDetailViewController: UIViewController {
     
     var info: BurgerDetailInfo? {
         didSet {
+            navigationItem.title = info?.burgerWrapper.name
             reloadView()
         }
     }
@@ -149,9 +150,6 @@ class BurgerDetailViewController: UIViewController {
         super.viewDidLoad()
         reviewsTable.tableHeaderView = card
         reviewsTable.sectionHeaderHeight = 40
-        
-//        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Done, target: self, action: "doneButtonHandler:")
-        
     }
     
     override func viewWillAppear(animated: Bool) {
