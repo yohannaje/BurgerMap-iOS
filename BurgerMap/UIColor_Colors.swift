@@ -19,4 +19,14 @@ extension UIColor {
         // #252424
         return UIColor(rgba: "#252424")
     }
+    
+    class func burgerStarRatingActive() -> UIColor {
+        // #FFDC88
+        return UIColor(rgba: "#FFDC88")
+    }
+    
+    class func burgerStarRatingInactive() -> UIColor {
+        // #D8D8D8
+        return UIColor(rgba: "#D8D8D8")
+    }    
 }
