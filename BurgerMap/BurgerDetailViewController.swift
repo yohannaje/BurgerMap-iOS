@@ -90,17 +90,17 @@ class BurgerCard: UIView {
     @IBOutlet weak var websiteValueLabel: UILabel!
     
     func setJoint(joint: BurgerWrapper) {
-        nameLabel.text = joint.name
-        typeLabel.text = "Joint"
-        addressValueLabel.text = joint.address
-        phoneValueLabel.text = joint.phone
-        websiteValueLabel.text = joint.website
+        nameLabel?.text = joint.name
+        typeLabel?.text = "Joint"
+        addressValueLabel?.text = joint.address
+        phoneValueLabel?.text = joint.phone
+        websiteValueLabel?.text = joint.website
         setRating(joint)
     }
     
     private func setRating(joint: BurgerWrapper) {
         let s = (0..<5)
-            .map { $0 < joint.rating ? UIColor.yellowColor() : UIColor.whiteColor() }
+            .map { $0 < joint.rating ? UIColor.burgerStarRatingActive() : UIColor.burgerStarRatingInactive() }
             .map { NSAttributedString(string: "\u{2605}", attributes: [NSForegroundColorAttributeName : $0]) }
             .reduce(NSMutableAttributedString()) {
                 $0.appendAttributedString($1)
