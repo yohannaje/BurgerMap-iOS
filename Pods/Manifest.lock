@@ -29,7 +29,6 @@ PODS:
     - FBSDKLoginKit (~> 4.0)
     - Parse (~> 1.8.4)
   - SnapKit (0.15.0)
-  - SWRevealViewController (2.3.0)
   - UIColor_Hex_Swift (1.2)
 
 DEPENDENCIES:
@@ -39,7 +38,6 @@ DEPENDENCIES:
   - Parse
   - ParseFacebookUtilsV4
   - SnapKit
-  - SWRevealViewController (~> 2.3.0)
   - UIColor_Hex_Swift (~> 1.1)
 
 SPEC CHECKSUMS:
@@ -52,7 +50,6 @@ SPEC CHECKSUMS:
   Parse: 17ad8e0677ed682f7f00503860fcda0f4eb74168
   ParseFacebookUtilsV4: cc51857cf984c6fc743e7f17c2ddebdb6f02f963
   SnapKit: 4962eed2ee18e48cbd2b2292fffc57efe7235f87
-  SWRevealViewController: 6d3fd97f70112fd7cef9de14df4260eacce4c63a
   UIColor_Hex_Swift: a1eff7380ffffed64b1540268e958ecdaa5fbd72
 
 COCOAPODS: 0.39.0

@@ -6,7 +6,7 @@ use_frameworks!
 target 'BurgerMap' do
 pod 'Alamofire', '~> 2.0'
 #pod 'Mapbox-iOS-SDK'
-pod 'SWRevealViewController', '~> 2.3.0'
+#pod 'SWRevealViewController', '~> 2.3.0'
 pod 'Crashlytics'
 pod 'Fabric'
 pod 'UIColor_Hex_Swift', '~> 1.1'
