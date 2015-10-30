@@ -68,7 +68,7 @@ class ContainerViewController: UIViewController {
         )
     }
     
-    func openMenu(sender: AnyObject) {
+    func openMenu(sender: AnyObject? = nil) {
         if menuIsOpen { return }
         menuLeadingConstraint.constant = 0
         centerViewController.view.addGestureRecognizer(closeMenuTapGestureRecognizer)
@@ -77,7 +77,7 @@ class ContainerViewController: UIViewController {
         animateMenu()
     }
     
-    func closeMenu(sender: AnyObject) {
+    func closeMenu(sender: AnyObject? = nil) {
         if !menuIsOpen { return }
         menuLeadingConstraint.constant = -menuWidth
         centerViewController.view.removeGestureRecognizer(closeMenuTapGestureRecognizer)
@@ -85,7 +85,7 @@ class ContainerViewController: UIViewController {
         animateMenu()
     }
     
-    func toggleMenu(sender: AnyObject) {
+    func toggleMenu(sender: AnyObject? = nil) {
         if menuIsOpen {
             closeMenu(sender)
         } else {

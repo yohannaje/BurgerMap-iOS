@@ -128,6 +128,8 @@ class BurgerMapViewController: UIViewController {
         navigationItem.leftBarButtonItem = {
             return UIBarButtonItem(image: UIImage(named: "menu"), style: .Plain, target: ContainerViewController.sharedInstance, action: "toggleMenu:")
         }()
+        
+        ContainerViewController.sharedInstance.closeMenu()
     }
     
     override func viewWillAppear(animated: Bool) {
