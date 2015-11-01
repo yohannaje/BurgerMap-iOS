@@ -160,8 +160,9 @@ class BurgerDetailViewController: UIViewController {
         guard let info = self.info else { return }
         dispatch_async(dispatch_get_main_queue()) {
             [unowned self] in
-            self.card.setJoint(info.burgerWrapper)
+            self.card?.setJoint(info.burgerWrapper)
             self.reviewsTable.reloadData()
+//            self.layoutHeaderView(self.reviewsTable.bounds.width, forTable: self.reviewsTable)
         }
     }
     
@@ -175,6 +176,38 @@ class BurgerDetailViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 }
+
+/*
+extension BurgerDetailViewController {
+    // This extension handles the dynamic table view header
+    // by Marco Arment here https://gist.github.com/marcoarment/1105553afba6b4900c10
+    override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransitionToSize(size, withTransitionCoordinator: coordinator)
+        self.layoutHeaderView(size.width, forTable: reviewsTable)
+    }
+    
+    func layoutHeaderView(width: CGFloat, forTable tableView: UITableView) {
+        let view = reviewsHeader
+        view.translatesAutoresizingMaskIntoConstraints = false
+        
+        // [add subviews and their constraints to view]
+        
+        view.setNeedsLayout()
+        view.layoutIfNeeded()
+        
+        let widthConstraint = NSLayoutConstraint(item: view, attribute: NSLayoutAttribute.Width, relatedBy: NSLayoutRelation.Equal, toItem: nil, attribute: NSLayoutAttribute.NotAnAttribute, multiplier: 1, constant: width)
+        
+        view.addConstraint(widthConstraint)
+        let height = view.systemLayoutSizeFittingSize(UILayoutFittingCompressedSize).height
+        view.removeConstraint(widthConstraint)
+        
+        view.frame = CGRect(x: 0, y: 0, width: width, height: height)
+        view.translatesAutoresizingMaskIntoConstraints = true
+        
+        tableView.tableHeaderView = view
+    }
+}
+*/
 
 extension BurgerDetailViewController: UITableViewDelegate {
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
