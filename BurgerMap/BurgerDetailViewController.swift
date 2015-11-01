@@ -100,7 +100,7 @@ class BurgerCard: UIView {
     
     private func setRating(joint: BurgerWrapper) {
         let s = (0..<5)
-            .map { $0 < joint.rating ? UIColor.burgerStarRatingActive() : UIColor.burgerStarRatingInactive() }
+            .map { $0 < joint.rating ? UIColor.burgerStarRatingActiveColor() : UIColor.burgerStarRatingInactiveColor() }
             .map { NSAttributedString(string: "\u{2605}", attributes: [NSForegroundColorAttributeName : $0]) }
             .reduce(NSMutableAttributedString()) {
                 $0.appendAttributedString($1)
@@ -117,7 +117,7 @@ class BurgerDetailViewController: UIViewController {
         label.backgroundColor = UIColor.clearColor()
         
         let container = UIView()
-        container.backgroundColor = UIColor.burgerOrange()
+        container.backgroundColor = UIColor.burgerOrangeColor()
         container.addSubview(label)
         
         label.snp_makeConstraints { (make) -> Void in

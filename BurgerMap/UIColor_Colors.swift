@@ -10,23 +10,27 @@ import UIKit
 import UIColor_Hex_Swift
 
 extension UIColor {
-    class func burgerOrange() -> UIColor {
-        // #F5A623
+    class func burgerOrangeColor() -> UIColor {
         return UIColor(rgba: "#ff9900")
     }
     
-    class func burgerDarkGray() -> UIColor {
-        // #252424
+    class func burgerDarkGrayColor() -> UIColor {
         return UIColor(rgba: "#252424")
     }
     
-    class func burgerStarRatingActive() -> UIColor {
-        // #FFDC88
+    class func burgerMenuBackgroundColor() -> UIColor {
+        return UIColor(rgba: "#222222")
+    }
+    
+    class func burgerStarRatingActiveColor() -> UIColor {
         return UIColor(rgba: "#FFDC88")
     }
     
-    class func burgerStarRatingInactive() -> UIColor {
-        // #D8D8D8
+    class func burgerStarRatingInactiveColor() -> UIColor {
         return UIColor(rgba: "#D8D8D8")
-    }    
+    }
+    
+    class func burgerSeparatorColor() -> UIColor {
+        return UIColor(rgba: "#979797")
+    }
 }

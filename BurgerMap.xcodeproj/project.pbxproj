@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		350BB2841BA3CD1F00A0D215 /* Burgers.json in Resources */ = {isa = PBXBuildFile; fileRef = 350BB2831BA3CD1F00A0D215 /* Burgers.json */; };
 		350BB2861BA3D1B200A0D215 /* UIColor_Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 350BB2851BA3D1B200A0D215 /* UIColor_Colors.swift */; };
+		35496C941BE66C3F009E717F /* MenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35496C931BE66C3F009E717F /* MenuItem.swift */; };
+		35496C961BE6715D009E717F /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35496C951BE6715D009E717F /* Configuration.swift */; };
 		3564995C1BA3B4EC00C69E93 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3564995B1BA3B4EC00C69E93 /* AppDelegate.swift */; };
 		356499611BA3B4EC00C69E93 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3564995F1BA3B4EC00C69E93 /* Main.storyboard */; };
 		356499631BA3B4EC00C69E93 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 356499621BA3B4EC00C69E93 /* Assets.xcassets */; };
@@ -36,6 +38,8 @@
 		350BB2821BA3CCB300A0D215 /* Burgers.geojson */ = {isa = PBXFileReference; lastKnownFileType = text; path = Burgers.geojson; sourceTree = "<group>"; };
 		350BB2831BA3CD1F00A0D215 /* Burgers.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Burgers.json; sourceTree = "<group>"; };
 		350BB2851BA3D1B200A0D215 /* UIColor_Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColor_Colors.swift; sourceTree = "<group>"; };
+		35496C931BE66C3F009E717F /* MenuItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuItem.swift; sourceTree = "<group>"; };
+		35496C951BE6715D009E717F /* Configuration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
 		356499581BA3B4EC00C69E93 /* BurgerMap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BurgerMap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3564995B1BA3B4EC00C69E93 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		356499601BA3B4EC00C69E93 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -122,6 +126,7 @@
 		3564995A1BA3B4EC00C69E93 /* BurgerMap */ = {
 			isa = PBXGroup;
 			children = (
+				359F28071BE66BDA00AB8FC2 /* Model */,
 				3564995B1BA3B4EC00C69E93 /* AppDelegate.swift */,
 				3564995F1BA3B4EC00C69E93 /* Main.storyboard */,
 				356499621BA3B4EC00C69E93 /* Assets.xcassets */,
@@ -150,6 +155,15 @@
 				35BB80301BAFB31100D84034 /* MenuViewController.swift */,
 			);
 			name = "View Controllers";
+			sourceTree = "<group>";
+		};
+		359F28071BE66BDA00AB8FC2 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				35496C931BE66C3F009E717F /* MenuItem.swift */,
+				35496C951BE6715D009E717F /* Configuration.swift */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 		44CED115617897C28D701555 /* Pods */ = {
@@ -335,11 +349,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				35496C941BE66C3F009E717F /* MenuItem.swift in Sources */,
 				35CABE011BA92C6D00667924 /* BurgerDetailViewController.swift in Sources */,
 				35BB80311BAFB31100D84034 /* MenuViewController.swift in Sources */,
 				350BB2861BA3D1B200A0D215 /* UIColor_Colors.swift in Sources */,
 				3564997D1BA3BA2D00C69E93 /* BurgerMapViewController.swift in Sources */,
 				35B690111BE06A1A00D12F2D /* ContainerViewController.swift in Sources */,
+				35496C961BE6715D009E717F /* Configuration.swift in Sources */,
 				3564995C1BA3B4EC00C69E93 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

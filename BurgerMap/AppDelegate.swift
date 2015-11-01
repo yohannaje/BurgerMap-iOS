@@ -21,7 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let tintColor = UIColor.whiteColor()
         UINavigationBar.appearance().barStyle = UIBarStyle.BlackOpaque
         UINavigationBar.appearance().translucent = true
-        UINavigationBar.appearance().barTintColor = UIColor.burgerOrange()
+        UINavigationBar.appearance().barTintColor = UIColor.burgerOrangeColor()
         UINavigationBar.appearance().tintColor = tintColor
         UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName: tintColor]
     }

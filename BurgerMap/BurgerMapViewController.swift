@@ -127,6 +127,9 @@ class BurgerMapViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        navigationItem.titleView = UIImageView(image: UIImage(named: "logo"))
+        
         navigationItem.leftBarButtonItem = {
             return UIBarButtonItem(image: UIImage(named: "menu"), style: .Plain, target: ContainerViewController.sharedInstance, action: "toggleMenu:")
         }()

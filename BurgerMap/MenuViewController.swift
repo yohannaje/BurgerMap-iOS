@@ -26,7 +26,7 @@ extension PFUser {
             
             let pictureURL = {
                 return NSURL(string: "https://graph.facebook.com/\(id)/picture?type=large&return_ssl_resources=1")!
-                }()
+            }()
             
             if let
                 name = userData["name"] as? String,
@@ -40,54 +40,6 @@ extension PFUser {
     }
 }
 
-class Configuration {
-    private enum Key: String {
-        case UserImageKey
-        case UserKey
-        case UserNameKey
-    }
-    
-    private var volatileStorage: [String : AnyObject] = [:]
-    
-    private static func fetchKey(key: String) -> AnyObject? {
-        return NSUserDefaults.standardUserDefaults().objectForKey(key)
-    }
-    
-    private static func setObject(object: AnyObject, forKey key: String) {
-        NSUserDefaults.standardUserDefaults().setObject(object, forKey: key)
-        NSUserDefaults.standardUserDefaults().synchronize()
-    }
-    
-    static var UserName: String? {
-        get {
-        return fetchKey(Key.UserNameKey.rawValue) as? String
-        }
-        
-        set {
-            guard let name = newValue else { return }
-            setObject(name, forKey: Key.UserNameKey.rawValue)
-        }
-    }
-    
-    static var UserImage: UIImage? {
-        get {
-        guard let data = fetchKey(Key.UserImageKey.rawValue) as? NSData else { return nil }
-        return UIImage(data: data)
-        }
-        
-        set {
-            guard let
-                image = newValue,
-                data = UIImagePNGRepresentation(image)
-                else {
-                    NSLog("could not convert image to bytes :-(")
-                    return
-            }
-            setObject(data, forKey: Key.UserImageKey.rawValue)
-        }
-    }
-}
-
 class MenuHeaderView: UIView {
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
@@ -95,7 +47,7 @@ class MenuHeaderView: UIView {
     @IBOutlet weak var checkinsLabel: UILabel!
     
     override func awakeFromNib() {
-//        translatesAutoresizingMaskIntoConstraints = false
+        //        translatesAutoresizingMaskIntoConstraints = false
     }
     
     override func layoutSubviews() {
@@ -123,15 +75,130 @@ class MenuHeaderView: UIView {
     }
 }
 
-struct MenuShortcut {
-    let action: String
-    let title: String
-    let iconName: String
-    lazy var icon: UIImage = {
-        //TODO: do this the right way here
-        return UIImage(named: self.iconName)!
-        }()
+class MenuCell: UITableViewCell {
+    @IBOutlet weak var iconImageView: UIImageView!
+    @IBOutlet weak var titleLabel: UILabel!
     
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        self.indentationWidth = 30.0
+        self.indentationLevel = 0
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        let indentPoints = CGFloat(self.indentationLevel) * self.indentationWidth
+        self.contentView.frame = CGRectMake(indentPoints, self.contentView.frame.origin.y,self.contentView.frame.size.width - indentPoints,self.contentView.frame.size.height)
+    }
+}
+
+class MenuFilterCell: MenuCell {
+}
+
+class MenuShortcutCell: MenuCell {
+    
+    static func setupSeparator(separator: UIView) {
+        separator.backgroundColor = UIColor.burgerSeparatorColor()
+        separator.addConstraint(NSLayoutConstraint(
+            item: separator, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 0.5))
+        
+    }
+    
+    @IBOutlet weak var topSeparator: UIView! {
+        didSet {
+            MenuShortcutCell.setupSeparator(topSeparator)
+        }
+    }
+    
+    @IBOutlet weak var bottomSeparator: UIView! {
+        didSet {
+            MenuShortcutCell.setupSeparator(bottomSeparator)
+        }
+    }
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        showsTopSeparator = true
+        showsBottomSeparator = false
+    }
+    
+    var showsTopSeparator: Bool {
+        get { return  topSeparator.hidden }
+        set { topSeparator.hidden = !newValue }
+    }
+    
+    var showsBottomSeparator: Bool {
+        get { return  bottomSeparator.hidden }
+        set { bottomSeparator.hidden = !newValue }
+    }
+    
+}
+
+protocol MenuSliderFilterCellDelegate {
+    func menuSliderFilterCell(cell: MenuSliderFilterCell, sliderValueUpdated newValue: Float)
+}
+
+class MenuSpacerCell: MenuCell {
+    override func awakeFromNib() {
+        selectionStyle = .None
+        contentView.addConstraint(NSLayoutConstraint(
+            item: contentView,
+            attribute: .Height,
+            relatedBy: .Equal,
+            toItem: nil,
+            attribute: .NotAnAttribute,
+            multiplier: 1.0,
+            constant: 5)
+        )
+    }
+}
+
+class MenuSliderFilterCell: MenuCell {
+    var delegate: MenuSliderFilterCellDelegate?
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        //        selectionStyle = .None
+        minLabel.text = String(format: "%d", arguments: [Int(slider.minimumValue) * 50])
+        maxLabel.text = String(format: "%d", arguments: [Int(slider.maximumValue) * 50])
+        slider.setThumbImage(UIImage(named: "knob"), forState: .Normal)
+        valueChanged(nil)
+    }
+    
+    private static func setupLabel(label: UILabel) {
+        label.textColor = .burgerOrangeColor()
+    }
+    
+    @IBOutlet weak var minLabel: UILabel! {
+        didSet {
+            MenuSliderFilterCell.setupLabel(minLabel)
+        }
+    }
+    
+    @IBOutlet weak var maxLabel: UILabel! {
+        didSet {
+            MenuSliderFilterCell.setupLabel(maxLabel)
+        }
+    }
+    
+    @IBOutlet weak var slider: UISlider! {
+        didSet {
+            slider.minimumTrackTintColor = UIColor.burgerOrangeColor()
+            slider.addTarget(self, action: "valueChanged:", forControlEvents: .ValueChanged)
+        }
+    }
+    
+    @IBOutlet weak var valueLabel: UILabel! {
+        didSet {
+            valueLabel.textColor = .whiteColor()
+        }
+    }
+    
+    func valueChanged(sender: AnyObject?) {
+        let value = 50 * Int(slider.value)
+        //valueLabel.text = String(format: "%d", arguments: [value])
+        delegate?.menuSliderFilterCell(self, sliderValueUpdated: Float(value))
+    }
 }
 
 class MenuViewController: UIViewController {
@@ -140,12 +207,24 @@ class MenuViewController: UIViewController {
     }
     @IBOutlet weak var menuTableView: UITableView!
     
-    let categories = ["Joints", "Veggie", "Delivery"]
+    // move this somewhere else
+    var selectedCategories = [String]()
+    
+    let categories = [
+        MenuFilter(value: "joints", title: "Burger Joints", iconName: "joint-hover", cellType: nil),
+        MenuFilter(value: "vegetarian", title: "Vegetarian", iconName: "veggie", cellType: nil),
+        MenuFilter(value: "open-now", title: "Open Now", iconName: "open", cellType: nil),
+        MenuFilter(value: "delivery", title: "Delivery", iconName: "delivery", cellType: nil),
+        MenuFilter(value: "takes-ccs", title: "Takes Credit Cards", iconName: "credit", cellType: nil),
+        MenuFilter(value: "price", title: "", iconName: "credit", cellType: "SliderFilterCell"),
+        MenuFilter(value: "", title: "", iconName:  "", cellType:  "MenuSpacerCell")
+    ]
+    
     let shortcuts = [
-        (action: "addReview", title: "Add Review"),
-        (action: "favorites", title: "Favorites"),
-        (action: "checkin", title: "Check In"),
-        (action: "settings", title: "Settings"),
+        MenuShortcut(action: "goReviews", title: "My Reviews", iconName: "reviews"),
+        MenuShortcut(action: "goFavorites", title: "Favorites", iconName: "fav"),
+        MenuShortcut(action: "goCheckIn", title: "Check In", iconName: "checkin"),
+        MenuShortcut(action: "goSettings", title: "Settings", iconName: "settings"),
     ]
     
     override func viewDidLoad() {
@@ -218,17 +297,47 @@ extension MenuViewController: UITableViewDataSource {
     }
     
     private func filterCellForTableView(tableView: UITableView, atIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("FilterCell", forIndexPath: indexPath)
-        let text = categories[indexPath.row]
-        cell.textLabel?.text = text
+        // fix this later
+        
+        let item = categories[indexPath.row]
+        let cellType = item.cellType ?? "FilterCell"
+        
+        let cell = tableView.dequeueReusableCellWithIdentifier(cellType, forIndexPath: indexPath)
+        
+        cell.indentationLevel = indexPath.row == 0 ? 0 : 1
+        if indexPath.row != 0 && selectedCategories.contains(item.value) {
+            cell.accessoryView = UIImageView(image: UIImage(named: "tick"))
+        } else {
+            cell.accessoryView = nil
+        }
+        
+        
+        
+        if let cell = cell as? MenuFilterCell {
+            if indexPath.row == 0 {
+                cell.titleLabel?.textColor = .blackColor()
+                cell.contentView.backgroundColor = .burgerOrangeColor()
+                cell.selectionStyle = .None
+            } else {
+                cell.titleLabel?.textColor = .whiteColor()
+                cell.contentView.backgroundColor = .clearColor()
+                cell.selectionStyle = .Default
+            }
+            cell.titleLabel?.text = item.title
+            cell.iconImageView?.image = item.icon
+        }
         return cell
         
     }
     
     private func shortcutCellForTableView(tableView: UITableView, atIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("ShortcutCell", forIndexPath: indexPath)
-        let (_, text) = shortcuts[indexPath.row]
-        cell.textLabel?.text = text
+        guard let cell = tableView.dequeueReusableCellWithIdentifier("ShortcutCell", forIndexPath: indexPath) as? MenuShortcutCell
+            else { fatalError() }
+        let item = shortcuts[indexPath.row]
+        cell.titleLabel?.text = item.title
+        cell.iconImageView?.image = item.icon
+        cell.showsTopSeparator = indexPath.row == 0
+        cell.showsBottomSeparator = true
         return cell
     }
     
@@ -241,5 +350,37 @@ extension MenuViewController: UITableViewDataSource {
         case .Shortcuts:
             return shortcutCellForTableView(tableView, atIndexPath: indexPath)
         }
+    }
+}
+
+extension MenuViewController: UITableViewDelegate {
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        if indexPath.section == 0 {
+            let item = categories[indexPath.row]
+            if item.cellType == "MenuSpacerCell" { return }
+            if let index = selectedCategories.indexOf(item.value) {
+                selectedCategories.removeAtIndex(index)
+            } else {
+                selectedCategories.append(item.value)
+            }
+            
+//            if item.value == "price" {
+//                guard let
+//                    cell = tableView.dataSource?.tableView(tableView, cellForRowAtIndexPath: indexPath) as? MenuSliderFilterCell
+//                else { fatalError() }
+//                cell.toggleSelected()
+//                
+//            }
+            tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+        }
+    }
+    
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        if indexPath.section == 0 {
+            let item = categories[indexPath.row]
+            if item.cellType == "MenuSpacerCell" { return 5.0 }
+        }
+        return 42.0
     }
 }
