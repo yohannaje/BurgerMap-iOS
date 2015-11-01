@@ -31,6 +31,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Fabric.with([Crashlytics.self()])
         Parse.setApplicationId("WbmdjdsBxAOdx88qvbv4dVEAZE2QcZSWyZ1QGShW", clientKey:"LDEZkdvLAdoSJhuC6L9YfECDfPmiHyR5CwUXYWQi")
         PFFacebookUtils.initializeFacebookWithApplicationLaunchOptions(launchOptions)
+        PFAnalytics.trackAppOpenedWithLaunchOptions(launchOptions)
         
         window = UIWindow(frame: UIScreen.mainScreen().bounds)
         let container = ContainerViewController.sharedInstance
