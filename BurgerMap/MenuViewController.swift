@@ -207,6 +207,8 @@ class MenuViewController: UIViewController {
     }
     @IBOutlet weak var menuTableView: UITableView!
     
+    var categoriesFilterIsOpen: Bool = true
+    
     // move this somewhere else
     var selectedCategories = [String]()
     
@@ -290,7 +292,7 @@ extension MenuViewController: UITableViewDataSource {
         guard let section = MenuSections(rawValue: section) else { return 0 }
         switch section {
         case .Filters:
-            return categories.count
+            return categoriesFilterIsOpen ? categories.count : 1
         case .Shortcuts:
             return shortcuts.count
         }
@@ -357,6 +359,11 @@ extension MenuViewController: UITableViewDelegate {
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if indexPath.section == 0 {
+            if indexPath.row == 0 {
+                categoriesFilterIsOpen = !categoriesFilterIsOpen
+                tableView.reloadSections(NSIndexSet(index: indexPath.section), withRowAnimation: .Automatic)
+                return
+            }
             let item = categories[indexPath.row]
             if item.cellType == "MenuSpacerCell" { return }
             if let index = selectedCategories.indexOf(item.value) {
