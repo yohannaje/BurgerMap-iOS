@@ -90,6 +90,27 @@ class MenuCell: UITableViewCell {
         let indentPoints = CGFloat(self.indentationLevel) * self.indentationWidth
         self.contentView.frame = CGRectMake(indentPoints, self.contentView.frame.origin.y,self.contentView.frame.size.width - indentPoints,self.contentView.frame.size.height)
     }
+    
+    private func setState(high: Bool, animated: Bool) {
+        let changes = {
+            [unowned self] in
+            self.backgroundColor = high ? .burgerOrangeColor() : .clearColor()
+            self.titleLabel?.textColor = high ? .blackColor() : .whiteColor()
+        }
+        if animated {
+            UIView.animateWithDuration(0.3, animations: changes)
+        } else {
+            changes()
+        }
+    }
+    
+    override func setHighlighted(highlighted: Bool, animated: Bool) {
+        setState(highlighted, animated: animated)
+    }
+    
+    override func setSelected(selected: Bool, animated: Bool) {
+        setState(selected, animated: animated)
+    }
 }
 
 class MenuFilterCell: MenuCell {
@@ -313,20 +334,20 @@ extension MenuViewController: UITableViewDataSource {
             cell.accessoryView = nil
         }
         
-        
-        
         if let cell = cell as? MenuFilterCell {
+            cell.titleLabel?.text = item.title
+            cell.iconImageView?.image = item.icon
+            
             if indexPath.row == 0 {
-                cell.titleLabel?.textColor = .blackColor()
-                cell.contentView.backgroundColor = .burgerOrangeColor()
+                cell.contentView.backgroundColor = categoriesFilterIsOpen ? .burgerOrangeColor() : .clearColor()
+                cell.titleLabel?.textColor = categoriesFilterIsOpen ? .blackColor() : .whiteColor()
+                cell.iconImageView.image = categoriesFilterIsOpen ? UIImage(named: "joint-b") : UIImage(named: "joint")
                 cell.selectionStyle = .None
             } else {
                 cell.titleLabel?.textColor = .whiteColor()
                 cell.contentView.backgroundColor = .clearColor()
                 cell.selectionStyle = .Default
             }
-            cell.titleLabel?.text = item.title
-            cell.iconImageView?.image = item.icon
         }
         return cell
         
@@ -371,14 +392,6 @@ extension MenuViewController: UITableViewDelegate {
             } else {
                 selectedCategories.append(item.value)
             }
-            
-//            if item.value == "price" {
-//                guard let
-//                    cell = tableView.dataSource?.tableView(tableView, cellForRowAtIndexPath: indexPath) as? MenuSliderFilterCell
-//                else { fatalError() }
-//                cell.toggleSelected()
-//                
-//            }
             tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
         }
     }
