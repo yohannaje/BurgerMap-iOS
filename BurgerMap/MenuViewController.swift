@@ -67,8 +67,8 @@ class MenuHeaderView: UIView {
                 let forename = components.dropLast().joinWithSeparator(" ")
                 return "\(forename)\n\(lastName)"
                 }()
-            self.reviewsLabel.text = "\(reviews) reviews"
-            self.checkinsLabel.text = "\(checkins) check-ins"
+            self.reviewsLabel?.text = "\(reviews) reviews"
+            self.checkinsLabel?.text = "\(checkins) check-ins"
             self.layoutIfNeeded()
             
         }

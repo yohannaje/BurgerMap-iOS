@@ -23,12 +23,27 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <animations/>
                             </mapView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aEC-aR-aCB">
+                                <rect key="frame" x="316" y="608" width="44" height="44"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="2AS-dm-rb8"/>
+                                    <constraint firstAttribute="width" secondItem="aEC-aR-aCB" secondAttribute="height" multiplier="1:1" id="FGb-ts-UOP"/>
+                                </constraints>
+                                <state key="normal" image="loc-off"/>
+                                <state key="selected" image="loc"/>
+                                <connections>
+                                    <action selector="locationButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="xix-c6-339"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="TlT-0k-Hzr" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="2gx-kH-FA7"/>
+                            <constraint firstAttribute="trailing" secondItem="aEC-aR-aCB" secondAttribute="trailing" constant="15" id="7DK-OJ-C0c"/>
                             <constraint firstItem="TlT-0k-Hzr" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="XPc-8j-Lxh"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="aEC-aR-aCB" secondAttribute="bottom" constant="15" id="kvb-aI-zjU"/>
                             <constraint firstItem="TlT-0k-Hzr" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="p8o-Qx-Oq5"/>
                             <constraint firstItem="TlT-0k-Hzr" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" id="stx-gv-Xv8"/>
                         </constraints>
@@ -37,6 +52,7 @@
                         <barButtonItem key="leftBarButtonItem" image="menu" id="cW7-KC-pzi"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="locationButton" destination="aEC-aR-aCB" id="46K-zD-2fA"/>
                         <outlet property="mapView" destination="TlT-0k-Hzr" id="DMg-jf-log"/>
                         <outlet property="menuBarButton" destination="cW7-KC-pzi" id="MFg-fJ-Wxf"/>
                         <segue destination="t7i-KQ-bgQ" kind="show" identifier="ShowBurgerDetailSegue" id="kEk-kW-b1A"/>
@@ -599,6 +615,8 @@
     </scenes>
     <resources>
         <image name="burger_header" width="300" height="225"/>
+        <image name="loc" width="32" height="32"/>
+        <image name="loc-off" width="32" height="32"/>
         <image name="menu" width="18" height="16"/>
         <image name="price" width="8" height="18"/>
     </resources>

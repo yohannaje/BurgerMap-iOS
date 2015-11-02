@@ -117,11 +117,12 @@ class BurgerMapViewController: UIViewController {
         didSet {
             mapView.delegate = self
             mapView.userTrackingMode = MKUserTrackingMode.Follow
-            navigationItem.rightBarButtonItem = MKUserTrackingBarButtonItem(mapView: mapView)
         }
     }
     
     @IBOutlet var menuBarButton: UIBarButtonItem!
+    
+    @IBOutlet weak var locationButton: UIButton!
     
     var firstLocate: Bool = true
     
@@ -133,6 +134,8 @@ class BurgerMapViewController: UIViewController {
         navigationItem.leftBarButtonItem = {
             return UIBarButtonItem(image: UIImage(named: "menu"), style: .Plain, target: ContainerViewController.sharedInstance, action: "toggleMenu:")
         }()
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "search"), style: .Plain, target: self, action: "showSearchViewController:")
         
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: nil)
         
@@ -161,13 +164,26 @@ class BurgerMapViewController: UIViewController {
         }
     }
     
+    @IBAction func locationButtonTapped(sender: AnyObject?) {
+        let mode: MKUserTrackingMode = mapView.userTrackingMode == .None ? .Follow : .None
+        mapView.setUserTrackingMode(mode, animated: true)
+    }
+    
     @IBAction func unwindFromDetail(segue: UIStoryboardSegue!) {
         
     }
-
+    
+    func showSearchViewController(sender: AnyObject?) {
+        
+    }
 }
 
 extension BurgerMapViewController: MKMapViewDelegate {
+    
+    func mapView(mapView: MKMapView, didChangeUserTrackingMode mode: MKUserTrackingMode, animated: Bool) {
+        locationButton.selected = mode != .None
+    }
+    
     func mapView(mapView: MKMapView, didUpdateUserLocation userLocation: MKUserLocation) {
         if firstLocate {
             firstLocate = false
