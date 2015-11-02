@@ -96,6 +96,7 @@ class MenuCell: UITableViewCell {
             [unowned self] in
             self.backgroundColor = high ? .burgerOrangeColor() : .clearColor()
             self.titleLabel?.textColor = high ? .blackColor() : .whiteColor()
+            self.iconImageView?.tintColor = high ? .blackColor() : .whiteColor()
         }
         if animated {
             UIView.animateWithDuration(0.3, animations: changes)
@@ -114,6 +115,12 @@ class MenuCell: UITableViewCell {
 }
 
 class MenuFilterCell: MenuCell {
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        self.iconImageView?.tintColor = .whiteColor()
+    }
+    override func setHighlighted(highlighted: Bool, animated: Bool) { }
+    override func setSelected(selected: Bool, animated: Bool) { }
 }
 
 class MenuShortcutCell: MenuCell {
@@ -234,7 +241,7 @@ class MenuViewController: UIViewController {
     var selectedCategories = [String]()
     
     let categories = [
-        MenuFilter(value: "joints", title: "Burger Joints", iconName: "joint-hover", cellType: nil),
+        MenuFilter(value: "joints", title: "Burger Joints", iconName: "joint", cellType: nil),
         MenuFilter(value: "vegetarian", title: "Vegetarian", iconName: "veggie", cellType: nil),
         MenuFilter(value: "open-now", title: "Open Now", iconName: "open", cellType: nil),
         MenuFilter(value: "delivery", title: "Delivery", iconName: "delivery", cellType: nil),
@@ -341,12 +348,12 @@ extension MenuViewController: UITableViewDataSource {
             if indexPath.row == 0 {
                 cell.contentView.backgroundColor = categoriesFilterIsOpen ? .burgerOrangeColor() : .clearColor()
                 cell.titleLabel?.textColor = categoriesFilterIsOpen ? .blackColor() : .whiteColor()
-                cell.iconImageView.image = categoriesFilterIsOpen ? UIImage(named: "joint-b") : UIImage(named: "joint")
+//                cell.iconImageView.image = categoriesFilterIsOpen ? UIImage(named: "joint-b") : UIImage(named: "joint")
                 cell.selectionStyle = .None
             } else {
                 cell.titleLabel?.textColor = .whiteColor()
                 cell.contentView.backgroundColor = .clearColor()
-                cell.selectionStyle = .Default
+                cell.selectionStyle = .None
             }
         }
         return cell

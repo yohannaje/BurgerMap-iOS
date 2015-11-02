@@ -17,7 +17,7 @@ protocol MenuItem {
 extension MenuItem {
     var icon: UIImage? {
         get {
-            return UIImage(named: self.iconName)
+            return UIImage(named: self.iconName)?.imageWithRenderingMode(.AlwaysTemplate)
         }
     }
 }
