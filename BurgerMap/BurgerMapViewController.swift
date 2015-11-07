@@ -22,9 +22,14 @@ extension UIView {
     }
 }
 
+func checkString(s: String?) -> Bool {
+    guard let r = s where r.utf8.count > 0 else { return false }
+    return true
+}
+
 func checkString(s: String?, _ t: String) -> String {
-    guard let r = s where r.utf8.count > 0 else { return t }
-    return r
+    if checkString(s) { return s! }
+    return t
 }
 
 typealias JSONDictionary = [NSObject : AnyObject]
@@ -46,6 +51,11 @@ class BurgerWrapper: NSObject {
     var address: String { return checkString(raw["direccion"] as? String, NSLocalizedString("No address", comment: "Joint no address found")) }
     var phone: String { return checkString(raw["telefono"] as? String, NSLocalizedString("No phone", comment: "Joint no phone found")) }
     var website: String? { return checkString(raw["web"] as? String, NSLocalizedString("No website", comment: "Joint no website found")) }
+    
+    var hasAddress: Bool { return checkString(raw["direccion"] as? String) }
+    var hasPhone: Bool { return checkString(raw["telefono"] as? String) }
+    var hasWebsite: Bool { return checkString(raw["web"] as? String) }
+    
 }
 
 extension BurgerWrapper: MKAnnotation {
@@ -95,7 +105,7 @@ class BurgerMapViewController: UIViewController {
         let lm = CLLocationManager()
         lm.delegate = self
         return lm
-        }()
+    }()
     
     lazy private var burgersList: [BurgerWrapper] = {
         guard let
@@ -111,7 +121,7 @@ class BurgerMapViewController: UIViewController {
         } catch {
             return []
         }
-        }()
+    }()
     
     @IBOutlet var mapView: MKMapView! {
         didSet {
@@ -133,7 +143,7 @@ class BurgerMapViewController: UIViewController {
         
         navigationItem.leftBarButtonItem = {
             return UIBarButtonItem(image: UIImage(named: "menu"), style: .Plain, target: ContainerViewController.sharedInstance, action: "toggleMenu:")
-        }()
+            }()
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "search"), style: .Plain, target: self, action: "showSearchViewController:")
         
@@ -150,7 +160,7 @@ class BurgerMapViewController: UIViewController {
             self.mapView.showsUserLocation = true
         }
     }
-        
+    
     override func viewDidAppear(animated: Bool) {
         mapView.addAnnotations(burgersList)
         mapView.showAnnotations(burgersList, animated: true)

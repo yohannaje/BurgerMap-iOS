@@ -8,6 +8,8 @@
 
 import UIKit
 import SnapKit
+import SafariServices
+import MapKit
 
 struct User {
     static func getUser(id: String) -> User? {
@@ -56,7 +58,29 @@ class BurgerDetailInfo: NSObject {
     }
 }
 
+protocol BurgerCardDelegate {
+    func checkinHandler(sender: AnyObject?)
+    func reviewHandler(sender: AnyObject?)
+    func websiteHandler(sender: AnyObject?)
+    func callHandler(sender: AnyObject?)
+    func directionsHandler(sender: AnyObject?)
+}
+
 class BurgerCard: UIView {
+    
+    var delegate: BurgerCardDelegate? {
+        didSet {
+            actionMap = {
+                _ -> [UIButton: (AnyObject?) -> ()] in
+                var m: [UIButton: (AnyObject?) -> ()] = [:]
+                m[directionsButton] = delegate?.directionsHandler
+                m[callButton] = delegate?.callHandler
+                m[websiteButton] = delegate?.websiteHandler
+                return m
+                }()
+        }
+    }
+    
     @IBOutlet weak var headerImageView: UIImageView! {
         didSet {
             headerImageView.clipsToBounds = true
@@ -66,7 +90,7 @@ class BurgerCard: UIView {
     @IBOutlet weak var typeLabel: UILabel!
     @IBOutlet weak var starRatingView: UIView! {
         didSet {
-//            starRatingView.clipsToBounds = true
+            //            starRatingView.clipsToBounds = true
             let label = starRatingLabel
             starRatingView.addSubview(label)
             label.snp_makeConstraints { (make) -> Void in
@@ -89,12 +113,27 @@ class BurgerCard: UIView {
     @IBOutlet weak var phoneValueLabel: UILabel!
     @IBOutlet weak var websiteValueLabel: UILabel!
     
+    @IBOutlet weak var directionsButton: UIButton!
+    @IBOutlet weak var callButton: UIButton!
+    @IBOutlet weak var websiteButton: UIButton!
+    
+    private var actionMap: [UIButton : (AnyObject?) -> ()]!
+    
+    @IBAction func buttonHandler(sender: AnyObject?) {
+        if let a = actionMap[sender as! UIButton] {
+            a(sender)
+        }
+    }
+    
     func setJoint(joint: BurgerWrapper) {
         nameLabel?.text = joint.name
         typeLabel?.text = "Joint"
         addressValueLabel?.text = joint.address
         phoneValueLabel?.text = joint.phone
         websiteValueLabel?.text = joint.website
+        directionsButton.enabled = joint.hasAddress
+        callButton.enabled = joint.hasPhone
+        websiteButton.enabled = joint.hasWebsite
         setRating(joint)
     }
     
@@ -113,12 +152,13 @@ class BurgerCard: UIView {
 class BurgerDetailViewController: UIViewController {
     var reviewsHeader: UIView {
         let label = UILabel()
-        label.text = "\(info?.reviews.count ?? 0) reviews"
+        label.text = "Reviews"
         label.backgroundColor = UIColor.clearColor()
         
         let container = UIView()
         container.backgroundColor = UIColor.burgerOrangeColor()
         container.addSubview(label)
+        
         
         label.snp_makeConstraints { (make) -> Void in
             make.edges.equalTo(container).inset(UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 0))
@@ -150,6 +190,7 @@ class BurgerDetailViewController: UIViewController {
         super.viewDidLoad()
         reviewsTable.tableHeaderView = card
         reviewsTable.sectionHeaderHeight = 40
+        card.delegate = self
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -162,7 +203,7 @@ class BurgerDetailViewController: UIViewController {
             [unowned self] in
             self.card?.setJoint(info.burgerWrapper)
             self.reviewsTable.reloadData()
-//            self.layoutHeaderView(self.reviewsTable.bounds.width, forTable: self.reviewsTable)
+            //            self.layoutHeaderView(self.reviewsTable.bounds.width, forTable: self.reviewsTable)
         }
     }
     
@@ -177,35 +218,73 @@ class BurgerDetailViewController: UIViewController {
     }
 }
 
-/*
-extension BurgerDetailViewController {
-    // This extension handles the dynamic table view header
-    // by Marco Arment here https://gist.github.com/marcoarment/1105553afba6b4900c10
-    override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
-        super.viewWillTransitionToSize(size, withTransitionCoordinator: coordinator)
-        self.layoutHeaderView(size.width, forTable: reviewsTable)
+extension BurgerDetailViewController: BurgerCardDelegate {
+    func callHandler(sender: AnyObject?) {
+        if let
+        phoneString = self.info?.burgerWrapper.phone,
+        phoneURL = NSURL(string: "tel:\(phoneString)") {
+            UIApplication.sharedApplication().openURL(phoneURL)
+        }
     }
     
-    func layoutHeaderView(width: CGFloat, forTable tableView: UITableView) {
-        let view = reviewsHeader
-        view.translatesAutoresizingMaskIntoConstraints = false
-        
-        // [add subviews and their constraints to view]
-        
-        view.setNeedsLayout()
-        view.layoutIfNeeded()
-        
-        let widthConstraint = NSLayoutConstraint(item: view, attribute: NSLayoutAttribute.Width, relatedBy: NSLayoutRelation.Equal, toItem: nil, attribute: NSLayoutAttribute.NotAnAttribute, multiplier: 1, constant: width)
-        
-        view.addConstraint(widthConstraint)
-        let height = view.systemLayoutSizeFittingSize(UILayoutFittingCompressedSize).height
-        view.removeConstraint(widthConstraint)
-        
-        view.frame = CGRect(x: 0, y: 0, width: width, height: height)
-        view.translatesAutoresizingMaskIntoConstraints = true
-        
-        tableView.tableHeaderView = view
+    func websiteHandler(sender: AnyObject?) {
+        if let
+        websiteString = self.info?.burgerWrapper.website,
+            websiteURL = NSURL(string: websiteString) {
+                let safariViewController = SFSafariViewController(URL: websiteURL)
+                navigationController?.pushViewController(safariViewController, animated: true)
+        }
     }
+    
+    func directionsHandler(sender: AnyObject?) {
+        // get a proper address dictionary for the destination
+        if let
+            destinationCoordinate = info?.burgerWrapper.coordinate {
+                let origin = MKMapItem.mapItemForCurrentLocation()
+                let destination = MKMapItem(placemark: MKPlacemark(coordinate: destinationCoordinate, addressDictionary: nil))
+                
+                destination.name = info?.burgerWrapper.name
+                
+                MKMapItem.openMapsWithItems([origin, destination], launchOptions: [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving])
+        }
+    }
+    
+    func checkinHandler(sender: AnyObject?) {
+    }
+    
+    func reviewHandler(sender: AnyObject?) {
+    }
+}
+
+/*
+extension BurgerDetailViewController {
+// This extension handles the dynamic table view header
+// by Marco Arment here https://gist.github.com/marcoarment/1105553afba6b4900c10
+override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
+super.viewWillTransitionToSize(size, withTransitionCoordinator: coordinator)
+self.layoutHeaderView(size.width, forTable: reviewsTable)
+}
+
+func layoutHeaderView(width: CGFloat, forTable tableView: UITableView) {
+let view = reviewsHeader
+view.translatesAutoresizingMaskIntoConstraints = false
+
+// [add subviews and their constraints to view]
+
+view.setNeedsLayout()
+view.layoutIfNeeded()
+
+let widthConstraint = NSLayoutConstraint(item: view, attribute: NSLayoutAttribute.Width, relatedBy: NSLayoutRelation.Equal, toItem: nil, attribute: NSLayoutAttribute.NotAnAttribute, multiplier: 1, constant: width)
+
+view.addConstraint(widthConstraint)
+let height = view.systemLayoutSizeFittingSize(UILayoutFittingCompressedSize).height
+view.removeConstraint(widthConstraint)
+
+view.frame = CGRect(x: 0, y: 0, width: width, height: height)
+view.translatesAutoresizingMaskIntoConstraints = true
+
+tableView.tableHeaderView = view
+}
 }
 */
 

@@ -536,6 +536,9 @@
                                                                                     <constraint firstAttribute="width" constant="44" id="o23-jF-O6l"/>
                                                                                 </constraints>
                                                                                 <state key="normal" image="direction"/>
+                                                                                <connections>
+                                                                                    <action selector="buttonHandler:" destination="fj7-lM-GGr" eventType="touchUpInside" id="FH8-wt-ccD"/>
+                                                                                </connections>
                                                                             </button>
                                                                         </subviews>
                                                                         <animations/>
@@ -570,6 +573,9 @@
                                                                                     <constraint firstAttribute="width" constant="44" id="JFD-4p-V9d"/>
                                                                                 </constraints>
                                                                                 <state key="normal" image="tel"/>
+                                                                                <connections>
+                                                                                    <action selector="buttonHandler:" destination="fj7-lM-GGr" eventType="touchUpInside" id="WAc-bs-kAq"/>
+                                                                                </connections>
                                                                             </button>
                                                                         </subviews>
                                                                         <animations/>
@@ -604,6 +610,9 @@
                                                                                     <constraint firstAttribute="width" constant="44" id="edb-Q1-gIN"/>
                                                                                 </constraints>
                                                                                 <state key="normal" image="web"/>
+                                                                                <connections>
+                                                                                    <action selector="buttonHandler:" destination="fj7-lM-GGr" eventType="touchUpInside" id="nQ8-iZ-io9"/>
+                                                                                </connections>
                                                                             </button>
                                                                         </subviews>
                                                                         <animations/>
@@ -629,12 +638,15 @@
                                                 <connections>
                                                     <outlet property="addressTitleLabel" destination="pSR-gK-y6E" id="dhq-Yf-BY2"/>
                                                     <outlet property="addressValueLabel" destination="Vof-F9-hD9" id="TDq-nk-eQT"/>
+                                                    <outlet property="callButton" destination="6iZ-An-Rgh" id="AbZ-6a-Bf3"/>
+                                                    <outlet property="directionsButton" destination="YG3-8x-nkr" id="ZO9-bS-O9j"/>
                                                     <outlet property="headerImageView" destination="f6B-IE-G0B" id="mwx-eK-7rn"/>
                                                     <outlet property="nameLabel" destination="TmE-d9-cVd" id="nhS-3E-XrR"/>
                                                     <outlet property="phoneTitleLabel" destination="Sf5-Ag-C35" id="Xvk-cc-7rp"/>
                                                     <outlet property="phoneValueLabel" destination="PRI-Pj-jeb" id="mZF-Ku-xQZ"/>
                                                     <outlet property="starRatingView" destination="UfQ-bp-wl4" id="jGY-3d-gbK"/>
                                                     <outlet property="typeLabel" destination="gol-uE-zC8" id="TQP-06-oVZ"/>
+                                                    <outlet property="websiteButton" destination="6Cd-Pl-QRs" id="hv4-ed-yu8"/>
                                                     <outlet property="websiteTitleLabel" destination="Z7u-Mm-lZD" id="oxr-mV-uF5"/>
                                                     <outlet property="websiteValueLabel" destination="ZyW-cI-neb" id="Qej-lQ-Azt"/>
                                                 </connections>
