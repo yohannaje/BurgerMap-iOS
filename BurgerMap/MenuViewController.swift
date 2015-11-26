@@ -263,9 +263,10 @@ class MenuViewController: UIViewController {
     }
     
     override func viewWillAppear(animated: Bool) {
-        fireProfileFetch()
+        //fireProfileFetch()
     }
     
+    /*
     func fireProfileFetch() {
         let debug = false
         let afterFetchProfile: PFUser.FetchProfileCallback = {
@@ -282,7 +283,7 @@ class MenuViewController: UIViewController {
         if let user = PFUser.currentUser() where !debug {
             user.fetchProfile(afterFetchProfile)
         } else {
-            let permissions = ["user_about_me", "user_relationships", "user_location"]
+            let permissions = ["user_about_me"]
             PFFacebookUtils.logInInBackgroundWithReadPermissions(permissions) {
                 (user, error) -> Void in
                 guard let user = user where error != nil else {
@@ -294,6 +295,7 @@ class MenuViewController: UIViewController {
             }
         }
     }
+    */
     
     override func viewDidAppear(animated: Bool) {
         NSLog("here")
@@ -302,6 +304,14 @@ class MenuViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func goSettings(sender: AnyObject?) {
+        guard let user = PFUser.currentUser() else { return }
+        NSLog("user: \(user)")
+        NSLog("logging out")
+        PFUser.logOut()
+        NSLog("logged out")
     }
 }
 
@@ -385,21 +395,34 @@ extension MenuViewController: UITableViewDataSource {
 
 extension MenuViewController: UITableViewDelegate {
     
+    private func handleCategoryMenuOperation(tableView: UITableView, atIndexPath indexPath: NSIndexPath) {
+        if indexPath.row == 0 {
+            categoriesFilterIsOpen = !categoriesFilterIsOpen
+            tableView.reloadSections(NSIndexSet(index: indexPath.section), withRowAnimation: .Automatic)
+            return
+        }
+        let item = categories[indexPath.row]
+        if item.cellType == "MenuSpacerCell" { return }
+        if let index = selectedCategories.indexOf(item.value) {
+            selectedCategories.removeAtIndex(index)
+        } else {
+            selectedCategories.append(item.value)
+        }
+        tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+    }
+    
+    private func handleShortcutMenuOperation(tableView: UITableView, atIndexPath indexPath: NSIndexPath) {
+        let shortcut = shortcuts[indexPath.row]
+        let selector = Selector(shortcut.action + ":")
+        let cell = tableView.cellForRowAtIndexPath(indexPath)
+        performSelector(selector, withObject: cell)
+    }
+    
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if indexPath.section == 0 {
-            if indexPath.row == 0 {
-                categoriesFilterIsOpen = !categoriesFilterIsOpen
-                tableView.reloadSections(NSIndexSet(index: indexPath.section), withRowAnimation: .Automatic)
-                return
-            }
-            let item = categories[indexPath.row]
-            if item.cellType == "MenuSpacerCell" { return }
-            if let index = selectedCategories.indexOf(item.value) {
-                selectedCategories.removeAtIndex(index)
-            } else {
-                selectedCategories.append(item.value)
-            }
-            tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+            handleCategoryMenuOperation(tableView, atIndexPath: indexPath)
+        } else if indexPath.section == 1 {
+            handleShortcutMenuOperation(tableView, atIndexPath: indexPath)
         }
     }
     
