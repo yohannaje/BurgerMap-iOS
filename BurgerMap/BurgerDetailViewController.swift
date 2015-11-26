@@ -34,22 +34,10 @@ struct User {
 
 
 class BurgerDetailInfo: NSObject {
-    struct Review {
-        let user: User!
-        let content: String!
-        let rating: Int!
-        
-        init?(userID: String, content: String, rating: Int) {
-            guard let user = User.getUser(userID) else { return nil }
-            self.user = user
-            self.content = content
-            self.rating = rating
-        }
-    }
     
     let headerImage: UIImage?
     let burgerWrapper: BurgerWrapper
-    let reviews: [Review] = []
+    let reviews: [BurgerReview] = []
     
     
     init(headerImage: UIImage?, burgerWrapper: BurgerWrapper) {
@@ -225,7 +213,7 @@ class BurgerDetailViewController: UIViewController {
         dispatch_async(dispatch_get_main_queue()) {
             [unowned self] in
             self.card?.setJoint(info.burgerWrapper)
-            self.reviewsTable.reloadData()
+            self.reviewsTable?.reloadData()
             //            self.layoutHeaderView(self.reviewsTable.bounds.width, forTable: self.reviewsTable)
         }
     }

@@ -10,6 +10,7 @@ import UIKit
 import CoreLocation
 import Parse
 
+
 class BurgerReview {
     
     static let WillStartSavingNotification = "BurgerReviewWillStartSaving"
@@ -30,11 +31,10 @@ class BurgerReview {
         review["content"] = content
         review["rating"] = rating
         review["business"] = info.burgerWrapper.id
-        let relation = user.relationForKey("reviews")
-        relation.addObject(review)
+        review["user"] = user.objectId
         
         NSNotificationCenter.defaultCenter().postNotificationName(BurgerReview.WillStartSavingNotification, object: self)
-        user.saveInBackgroundWithBlock {
+        review.saveInBackgroundWithBlock {
             [weak self](saved, error) -> Void in
             let sself = self
             
@@ -77,17 +77,33 @@ class AddReviewTableViewController: UITableViewController {
     
     func saveReview(sender: AnyObject?) {
         NSLog("save review")
+        reviewTextView.resignFirstResponder()
         review?.save()
     }
     
     func willStartSavingReview(notification: NSNotification) {
-        let aiv = UIActivityIndicatorView(activityIndicatorStyle: .Gray)
+        let aiv = UIActivityIndicatorView(activityIndicatorStyle: .White)
         aiv.startAnimating()
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: aiv)
     }
     
     func didFinishSavingReview(notification: NSNotification) {
         navigationItem.rightBarButtonItem = saveButton
+        guard let
+            userInfo = notification.userInfo,
+            result = userInfo["result"] as? Bool
+            else { return }
+        
+        let message = result ? "Review saved successfully!" : "Failed to save review"
+        let alertController = UIAlertController(title: message, message: nil, preferredStyle: .Alert)
+        alertController.addAction(UIAlertAction(title: "Yeah!", style: .Default, handler: {
+            [unowned self](action) -> Void in
+            self.navigationController?.popViewControllerAnimated(true)
+        }))
+        
+        presentViewController(alertController, animated: true, completion: nil)
+        
+        
     }
     
     override func viewWillAppear(animated: Bool) {

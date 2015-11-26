@@ -9,6 +9,8 @@
 import UIKit
 import MapKit
 import CoreLocation
+import Parse
+import ParseFacebookUtilsV4
 
 let ShowDetailSegueIdentifier = "ShowBurgerDetailSegue"
 
@@ -39,7 +41,7 @@ class BurgerWrapper: NSObject {
     
     init(_ dict: JSONDictionary) { raw = dict }
     
-    var id: String { return raw["id"] as! String }
+    var id: String { return "\(raw["id"] as! Int)" }
     var name: String { return raw["hamburgueseria"] as! String }
     var coordinate: CLLocationCoordinate2D {
         let lat = raw["lat"] as! CLLocationDegrees
@@ -164,6 +166,20 @@ class BurgerMapViewController: UIViewController {
     override func viewDidAppear(animated: Bool) {
         mapView.addAnnotations(burgersList)
         mapView.showAnnotations(burgersList, animated: true)
+        
+        if PFUser.currentUser() == nil {
+            PFFacebookUtils.logInInBackgroundWithReadPermissions(["user_about_me"]) {
+                (user, error) -> Void in
+                if (user == nil) {
+                    NSLog("Uh oh. The user cancelled the Facebook login.");
+                } else if (user!.isNew) {
+                    NSLog("User signed up and logged in through Facebook!");
+                } else {
+                    NSLog("User logged in through Facebook!");
+                }
+            }
+        }
+        
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -171,7 +187,7 @@ class BurgerMapViewController: UIViewController {
             guard let
                 vc = segue.destinationViewController as? BurgerDetailViewController,
                 info = sender as? BurgerDetailInfo
-            else { return }
+                else { return }
             vc.info = info
         }
     }
