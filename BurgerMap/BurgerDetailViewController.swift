@@ -159,12 +159,26 @@ class BurgerDetailViewController: UIViewController {
         container.backgroundColor = UIColor.burgerOrangeColor()
         container.addSubview(label)
         
+        let button = UIButton()
+        button.setImage(UIImage(named: "add"), forState: .Normal)
+        container.addSubview(button)
+        button.addTarget(self, action: "addReview:", forControlEvents: .TouchUpInside)
+        button.snp_makeConstraints { (make) -> Void in
+            make.width.equalTo(44)
+            make.height.equalTo(44)
+            make.trailing.equalTo(-25)
+            make.centerY.equalTo(container)
+        }
         
         label.snp_makeConstraints { (make) -> Void in
             make.edges.equalTo(container).inset(UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 0))
         }
         
         return container
+    }
+    
+    func addReview(sender: AnyObject?) {
+        NSLog("add review")
     }
     
     @IBOutlet weak var reviewsTable: UITableView! {
