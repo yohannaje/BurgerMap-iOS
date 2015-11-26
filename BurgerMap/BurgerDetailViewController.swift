@@ -10,6 +10,7 @@ import UIKit
 import SnapKit
 import SafariServices
 import MapKit
+import Parse
 
 struct User {
     static func getUser(id: String) -> User? {
@@ -37,7 +38,7 @@ class BurgerDetailInfo: NSObject {
     
     let headerImage: UIImage?
     let burgerWrapper: BurgerWrapper
-    let reviews: [BurgerReview] = []
+    var reviews: [BurgerReview] = []
     
     
     init(headerImage: UIImage?, burgerWrapper: BurgerWrapper) {
@@ -194,6 +195,7 @@ class BurgerDetailViewController: UIViewController {
         didSet {
             navigationItem.title = info?.burgerWrapper.name
             reloadView()
+            fetchReviews()
         }
     }
     
@@ -222,6 +224,22 @@ class BurgerDetailViewController: UIViewController {
         NSLog("presenting vc is \(self.presentingViewController)")
     }
     
+    func fetchReviews() {
+        let query = PFQuery(className: "BusinessReview")
+        query.whereKey("business", equalTo: info!.burgerWrapper.id)
+        NSLog("query: \(query)")
+        query.findObjectsInBackgroundWithBlock {
+            [unowned self](reviews, error) -> Void in
+            if let reviews = reviews {
+                NSLog("got \(reviews.count) objects")
+                self.info?.reviews = reviews.map { BurgerReview(review: $0, infoObject: self.info!) }
+                dispatch_async(dispatch_get_main_queue(), {
+                    [unowned self]() -> Void in
+                    self.reviewsTable?.reloadData()
+                    })
+            }
+        }
+    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -232,15 +250,15 @@ class BurgerDetailViewController: UIViewController {
 extension BurgerDetailViewController: BurgerCardDelegate {
     func callHandler(sender: AnyObject?) {
         if let
-        phoneString = self.info?.burgerWrapper.phone,
-        phoneURL = NSURL(string: "tel:\(phoneString)") {
-            UIApplication.sharedApplication().openURL(phoneURL)
+            phoneString = self.info?.burgerWrapper.phone,
+            phoneURL = NSURL(string: "tel:\(phoneString)") {
+                UIApplication.sharedApplication().openURL(phoneURL)
         }
     }
     
     func websiteHandler(sender: AnyObject?) {
         if let
-        websiteString = self.info?.burgerWrapper.website,
+            websiteString = self.info?.burgerWrapper.website,
             websiteURL = NSURL(string: websiteString) {
                 let safariViewController = SFSafariViewController(URL: websiteURL)
                 navigationController?.pushViewController(safariViewController, animated: true)
@@ -280,7 +298,9 @@ extension BurgerDetailViewController: UITableViewDataSource {
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("ReviewCell", forIndexPath: indexPath)
-        cell.textLabel?.text = "some review"
+        if let review = info?.reviews[indexPath.row] {
+            cell.textLabel?.text = review.content
+        }
         return cell
     }
 }

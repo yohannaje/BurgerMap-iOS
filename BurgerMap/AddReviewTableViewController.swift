@@ -26,6 +26,14 @@ class BurgerReview {
         self.user = user
     }
     
+    init(review: PFObject, infoObject: BurgerDetailInfo) {
+        self.content = review["content"] as! String
+        self.rating = review["rating"] as! Int
+        self.info = infoObject
+        //NO NO NO!
+        self.user = PFUser.currentUser()!
+    }
+    
     func save() {
         let review = PFObject(className: "BusinessReview")
         review["content"] = content
