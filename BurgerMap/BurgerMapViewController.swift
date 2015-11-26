@@ -169,8 +169,10 @@ class BurgerMapViewController: UIViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "ShowBurgerDetailSegue" {
             guard let
-                vc = segue.destinationViewController as? BurgerDetailViewController else { return }
-            vc.info = sender as? BurgerDetailInfo
+                vc = segue.destinationViewController as? BurgerDetailViewController,
+                info = sender as? BurgerDetailInfo
+            else { return }
+            vc.info = info
         }
     }
     
