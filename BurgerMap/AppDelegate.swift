@@ -17,6 +17,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
+    private func presentLoginForm() {
+        
+    }
+    
     private func applyStyle() {
         let tintColor = UIColor.whiteColor()
         UINavigationBar.appearance().barStyle = UIBarStyle.BlackOpaque
@@ -37,6 +41,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let container = ContainerViewController.sharedInstance
         window?.rootViewController = container
         window?.makeKeyAndVisible()
+        
+        if PFUser.currentUser() == nil {
+            presentLoginForm()
+        }
         
         return true
     }
