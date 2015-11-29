@@ -107,6 +107,17 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 Fabric: Copyright 2015 Twitter, Inc. All Rights Reserved. Use of this software is subject to the terms and conditions of the Fabric Software and Services Agreement located at https://fabric.io/terms. OSS: http://get.fabric.io/terms/opensource.txt
 
+## GoogleMaps
+
+If you use the Google Maps SDK for iOS in your application, you must
+include the attribution text as part of a legal notices section in your
+application. Including legal notices as an independent menu item, or as
+part of an "About" menu item, is recommended.
+
+You can get the attribution text by making a call to
+[GMSServices openSourceLicenseInfo].
+
+
 ## Parse
 
 See https://www.parse.com/about/terms

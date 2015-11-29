@@ -13,6 +13,7 @@ pod 'UIColor_Hex_Swift', '~> 1.1'
 pod 'SnapKit'
 pod 'Parse'
 pod 'ParseFacebookUtilsV4'
+pod 'GoogleMaps'
 end
 
 target 'BurgerMapTests' do

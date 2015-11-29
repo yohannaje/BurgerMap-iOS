@@ -21,6 +21,7 @@ PODS:
     - FBSDKCoreKit/arc
   - FBSDKLoginKit (4.7.1):
     - FBSDKCoreKit
+  - GoogleMaps (1.10.5)
   - Parse (1.9.1):
     - Bolts/Tasks (>= 1.4.0)
   - ParseFacebookUtilsV4 (1.9.0):
@@ -35,6 +36,7 @@ DEPENDENCIES:
   - Alamofire (~> 2.0)
   - Crashlytics
   - Fabric
+  - GoogleMaps
   - Parse
   - ParseFacebookUtilsV4
   - SnapKit
@@ -47,6 +49,7 @@ SPEC CHECKSUMS:
   Fabric: 190bf1a6eb65f7500de1347d027d2e59a7e53db1
   FBSDKCoreKit: 9141b70960a37930850370495fe565f4a27ac141
   FBSDKLoginKit: c11ed3c2833472db3bb4a4aecf27af4a6f69b173
+  GoogleMaps: da51c62c338c2d9c47cdad470a0d1e0e4b8544e4
   Parse: 54a965c8c19a6dde90284ab654dbcc77ef8c001b
   ParseFacebookUtilsV4: aadebfaaaf4a45bf0a0992863bf48c8fc49189e3
   SnapKit: ddac6b339d571f9d80dbb733585b172ee9eed3cb
