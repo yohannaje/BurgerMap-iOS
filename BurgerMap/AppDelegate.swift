@@ -11,6 +11,7 @@ import Fabric
 import Crashlytics
 import FBSDKCoreKit
 import ParseFacebookUtilsV4
+import GoogleMaps
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -32,6 +33,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         applyStyle()
+        GMSServices.provideAPIKey("AIzaSyDLDl-d9TaTZFTAX06_-CyUiPutln4WlYE")
         Fabric.with([Crashlytics.self()])
         Parse.setApplicationId("WbmdjdsBxAOdx88qvbv4dVEAZE2QcZSWyZ1QGShW", clientKey:"LDEZkdvLAdoSJhuC6L9YfECDfPmiHyR5CwUXYWQi")
         PFFacebookUtils.initializeFacebookWithApplicationLaunchOptions(launchOptions)

@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		350BB2841BA3CD1F00A0D215 /* Burgers.json in Resources */ = {isa = PBXBuildFile; fileRef = 350BB2831BA3CD1F00A0D215 /* Burgers.json */; };
 		350BB2861BA3D1B200A0D215 /* UIColor_Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 350BB2851BA3D1B200A0D215 /* UIColor_Colors.swift */; };
+		352B1CE01C0B83F3002F92FC /* GooglePlacesSearcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 352B1CDF1C0B83F3002F92FC /* GooglePlacesSearcher.swift */; };
+		352B1CE21C0B92A3002F92FC /* CoreLocationExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 352B1CE11C0B92A3002F92FC /* CoreLocationExtensions.swift */; };
 		35496C941BE66C3F009E717F /* MenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35496C931BE66C3F009E717F /* MenuItem.swift */; };
 		35496C961BE6715D009E717F /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35496C951BE6715D009E717F /* Configuration.swift */; };
 		355AE4FC1C069CE200FDFD28 /* AddReviewTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 355AE4FB1C069CE200FDFD28 /* AddReviewTableViewController.swift */; };
@@ -39,6 +41,8 @@
 		350BB2821BA3CCB300A0D215 /* Burgers.geojson */ = {isa = PBXFileReference; lastKnownFileType = text; path = Burgers.geojson; sourceTree = "<group>"; };
 		350BB2831BA3CD1F00A0D215 /* Burgers.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Burgers.json; sourceTree = "<group>"; };
 		350BB2851BA3D1B200A0D215 /* UIColor_Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColor_Colors.swift; sourceTree = "<group>"; };
+		352B1CDF1C0B83F3002F92FC /* GooglePlacesSearcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GooglePlacesSearcher.swift; sourceTree = "<group>"; };
+		352B1CE11C0B92A3002F92FC /* CoreLocationExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreLocationExtensions.swift; sourceTree = "<group>"; };
 		35496C931BE66C3F009E717F /* MenuItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuItem.swift; sourceTree = "<group>"; };
 		35496C951BE6715D009E717F /* Configuration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
 		355AE4FB1C069CE200FDFD28 /* AddReviewTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddReviewTableViewController.swift; sourceTree = "<group>"; };
@@ -82,6 +86,7 @@
 			isa = PBXGroup;
 			children = (
 				350BB2851BA3D1B200A0D215 /* UIColor_Colors.swift */,
+				352B1CE11C0B92A3002F92FC /* CoreLocationExtensions.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -103,6 +108,14 @@
 				35B690101BE06A1A00D12F2D /* ContainerViewController.swift */,
 			);
 			name = Menu;
+			sourceTree = "<group>";
+		};
+		352B1CDE1C0B83E0002F92FC /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				352B1CDF1C0B83F3002F92FC /* GooglePlacesSearcher.swift */,
+			);
+			name = Services;
 			sourceTree = "<group>";
 		};
 		3564994F1BA3B4EC00C69E93 = {
@@ -128,6 +141,7 @@
 		3564995A1BA3B4EC00C69E93 /* BurgerMap */ = {
 			isa = PBXGroup;
 			children = (
+				352B1CDE1C0B83E0002F92FC /* Services */,
 				359F28071BE66BDA00AB8FC2 /* Model */,
 				3564995B1BA3B4EC00C69E93 /* AppDelegate.swift */,
 				3564995F1BA3B4EC00C69E93 /* Main.storyboard */,
@@ -358,9 +372,11 @@
 				35BB80311BAFB31100D84034 /* MenuViewController.swift in Sources */,
 				350BB2861BA3D1B200A0D215 /* UIColor_Colors.swift in Sources */,
 				3564997D1BA3BA2D00C69E93 /* BurgerMapViewController.swift in Sources */,
+				352B1CE21C0B92A3002F92FC /* CoreLocationExtensions.swift in Sources */,
 				35B690111BE06A1A00D12F2D /* ContainerViewController.swift in Sources */,
 				35496C961BE6715D009E717F /* Configuration.swift in Sources */,
 				3564995C1BA3B4EC00C69E93 /* AppDelegate.swift in Sources */,
+				352B1CE01C0B83F3002F92FC /* GooglePlacesSearcher.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -11,6 +11,7 @@ import MapKit
 import CoreLocation
 import Parse
 import ParseFacebookUtilsV4
+import GoogleMaps
 
 let ShowDetailSegueIdentifier = "ShowBurgerDetailSegue"
 
@@ -41,13 +42,15 @@ class BurgerWrapper: NSObject {
     
     init(_ dict: JSONDictionary) { raw = dict }
     
-    var id: String { return "\(raw["id"] as! Int)" }
+    var id: String { return "\(raw["id"] as? Int)" }
     var name: String { return raw["hamburgueseria"] as! String }
     var coordinate: CLLocationCoordinate2D {
         let lat = raw["lat"] as! CLLocationDegrees
         let lon = raw["lon"] as! CLLocationDegrees
         return CLLocationCoordinate2D(latitude: lat, longitude: lon)
     }
+    
+    var fromGoogle: Bool { return raw["origin"] != nil }
     
     var rating: Int { return 3 }
     var address: String { return checkString(raw["direccion"] as? String, NSLocalizedString("No address", comment: "Joint no address found")) }
@@ -58,6 +61,20 @@ class BurgerWrapper: NSObject {
     var hasPhone: Bool { return checkString(raw["telefono"] as? String) }
     var hasWebsite: Bool { return checkString(raw["web"] as? String) }
     
+}
+
+extension GooglePlacesResult {
+    var asBurgerWrapper: BurgerWrapper? {
+        let d: JSONDictionary = [
+                "id": self.placeId,
+                "hamburgueseria": self.name,
+                "direccion": self.vicinity,
+                "lat": self.coordinates.latitude,
+                "lon": self.coordinates.longitude,
+                "origin": "GOOGLE"
+        ]
+        return BurgerWrapper(d)
+    }
 }
 
 extension BurgerWrapper: MKAnnotation {
@@ -103,6 +120,10 @@ class LocationHelper: NSObject, CLLocationManagerDelegate {
 
 class BurgerMapViewController: UIViewController {
     
+    lazy private var placesClient: GMSPlacesClient = {
+        return GMSPlacesClient()
+    }()
+    
     lazy private var locationManager: CLLocationManager = {
         let lm = CLLocationManager()
         lm.delegate = self
@@ -136,6 +157,8 @@ class BurgerMapViewController: UIViewController {
     
     @IBOutlet weak var locationButton: UIButton!
     
+    
+    var oldCenter: CLLocationCoordinate2D?
     var firstLocate: Bool = true
     
     override func viewDidLoad() {
@@ -165,7 +188,10 @@ class BurgerMapViewController: UIViewController {
     
     override func viewDidAppear(animated: Bool) {
         mapView.addAnnotations(burgersList)
-        mapView.showAnnotations(burgersList, animated: true)
+        
+        if !CLLocationCoordinate2DIsValid(mapView.userLocation.coordinate) {
+            mapView.showAnnotations(burgersList, animated: true)
+        }
         
         if PFUser.currentUser() == nil {
             PFFacebookUtils.logInInBackgroundWithReadPermissions(["user_about_me"]) {
@@ -208,6 +234,45 @@ class BurgerMapViewController: UIViewController {
 
 extension BurgerMapViewController: MKMapViewDelegate {
     
+    func mapView(mapView: MKMapView, regionWillChangeAnimated animated: Bool) {
+        oldCenter = mapView.centerCoordinate
+    }
+    
+    func mapView(mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
+        guard let oldCenter = oldCenter else { return }
+        let old = CLLocation(coordinate: oldCenter)
+        let new = CLLocation(coordinate: mapView.centerCoordinate)
+        if true || new.distanceFromLocation(old) > 400 {
+            self.oldCenter = new.coordinate
+            GooglePlacesSearcher.sharedInstance.search(mapView.centerCoordinate) {
+                (error, attrib, places) in
+                guard
+                let
+                    places = places,
+                    attrib = attrib
+                where
+                    error == nil
+                else {
+                    NSLog("error: \(error)")
+                    return
+                }
+                
+                let toRemove = mapView.annotations.filter {
+                    (ann) -> Bool in
+                    guard let ann = ann as? BurgerWrapper else { return false }
+                    return ann.fromGoogle
+                }
+                
+                NSLog("show attrib somewhere: \(attrib)")
+
+                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    mapView.removeAnnotations(toRemove)
+                    mapView.addAnnotations(places.flatMap { $0.asBurgerWrapper })
+                })
+            }
+        }
+    }
+    
     func mapView(mapView: MKMapView, didChangeUserTrackingMode mode: MKUserTrackingMode, animated: Bool) {
         locationButton.selected = mode != .None
     }
@@ -224,13 +289,19 @@ extension BurgerMapViewController: MKMapViewDelegate {
     
     func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
         if annotation is MKUserLocation { return nil }
+        guard let annotation = annotation as? BurgerWrapper else { fatalError("wtf kind of annotation we have here?!") }
         let view: MKAnnotationView
         if let v = mapView.dequeueReusableAnnotationViewWithIdentifier("BurgerPin") {
             view = v
         } else {
             view = MKAnnotationView(annotation: annotation, reuseIdentifier: "BurgerPin")
         }
-        view.image = UIImage(named: "pin")
+        view.image = {
+            if annotation.fromGoogle {
+                return UIImage(named: "pin-google")
+            }
+            return UIImage(named: "pin")
+        }()
         view.centerOffset = CGPoint(x: 0, y: -view.bounds.height)
         view.canShowCallout = true
         return view
